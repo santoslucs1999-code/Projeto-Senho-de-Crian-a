@@ -178,6 +178,63 @@
       }
     }
 
+    .contact-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px 30px;
+      margin: 60px auto;
+      max-width: 800px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+      border: 2px solid transparent;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(74, 144, 226, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    .contact-btn i {
+      margin-right: 10px;
+      font-size: 1.3rem;
+    }
+
     .timeline-entry::after {
       content: "";
       position: absolute;
@@ -379,6 +436,53 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-link {
+      display: inline-block;
+      background: rgba(74, 144, 226, 0.8);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 10px 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-link:hover {
+      background: rgba(52, 152, 219, 0.9);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
+      color: white;
+    }
+
+    .social-link.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    .social-link.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 10px 25px rgba(240, 148, 51, 0.4);
+    }
+
+    .contact-btn.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    .contact-btn.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 15px 35px rgba(240, 148, 51, 0.5);
+    }
+
+    .social-link i {
+      margin-right: 8px;
+    }
+
     .footer-heart {
       color: #4a90e2;
       animation: heartbeat 1.5s ease-in-out infinite;
@@ -415,6 +519,26 @@
 
       .header {
         padding: 60px 20px 40px;
+      }
+
+      .contact-section {
+        margin: 40px 20px;
+        padding: 40px 20px;
+      }
+
+      .contact-title {
+        font-size: 2rem;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-btn {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px 0;
       }
     }
 
@@ -478,10 +602,10 @@
                 <i class="fas fa-gamepad"></i> Brincadeiras e Atividades
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?kids,playground,games,fun" alt="Crianças brincando no parquinho">
-                <img src="https://source.unsplash.com/300x200/?children,playing,toys,church" alt="Atividades com brinquedos">
-                <img src="https://source.unsplash.com/300x200/?kids,running,outdoor,play" alt="Brincadeiras ao ar livre">
-                <img src="https://source.unsplash.com/300x200/?children,circle,games,community" alt="Brincadeiras em roda">
+                <img src="./fotos/2021/brincadeiras-parquinho.jpg" alt="Crianças brincando no parquinho">
+                <img src="./fotos/2021/atividades-brinquedos.jpg" alt="Atividades com brinquedos">
+                <img src="./fotos/2021/brincadeiras-ar-livre.jpg" alt="Brincadeiras ao ar livre">
+                <img src="./fotos/2021/brincadeiras-roda.jpg" alt="Brincadeiras em roda">
               </div>
             </div>
             
@@ -490,9 +614,9 @@
                 <i class="fas fa-microphone"></i> Palestras e Ensinamentos
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?pastor,speaking,children,church" alt="Pastor falando para crianças">
-                <img src="https://source.unsplash.com/300x200/?bible,kids,teaching,lesson" alt="Ensino bíblico para crianças">
-                <img src="https://source.unsplash.com/300x200/?children,listening,story,church" alt="Crianças atentas à história">
+                <img src="./fotos/2021/pastor-falando-criancas.jpg" alt="Pastor falando para crianças - 2021">
+                <img src="./fotos/2021/ensino-biblico-criancas.jpg" alt="Ensino bíblico para crianças - 2021">
+                <img src="./fotos/2021/criancas-ouvindo-historia.jpg" alt="Crianças atentas à história - 2021">
               </div>
             </div>
           </div>
@@ -512,10 +636,10 @@
                 <i class="fas fa-gamepad"></i> Brincadeiras e Diversão
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?kids,bouncy,castle,party" alt="Pula-pula e diversão">
-                <img src="https://source.unsplash.com/300x200/?children,face,paint,festival" alt="Pintura facial">
-                <img src="https://source.unsplash.com/300x200/?kids,balloon,animals,party" alt="Animação com balões">
-                <img src="https://source.unsplash.com/300x200/?children,dancing,music,celebration" alt="Crianças dançando">
+                <img src="./fotos/2022/pula-pula-diversao.jpg" alt="Pula-pula e diversão - 2022">
+                <img src="./fotos/2022/pintura-facial.jpg" alt="Pintura facial - 2022">
+                <img src="./fotos/2022/animacao-baloes.jpg" alt="Animação com balões - 2022">
+                <img src="./fotos/2022/criancas-dancando.jpg" alt="Crianças dançando - 2022">
               </div>
             </div>
             
@@ -524,9 +648,9 @@
                 <i class="fas fa-microphone"></i> Palestras e Momentos Especiais
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?children,prayer,circle,church" alt="Momento de oração">
-                <img src="https://source.unsplash.com/300x200/?kids,singing,choir,church" alt="Coral infantil">
-                <img src="https://source.unsplash.com/300x200/?pastor,children,blessing,church" alt="Momento de bênção">
+                <img src="./fotos/2022/momento-oracao.jpg" alt="Momento de oração - 2022">
+                <img src="./fotos/2022/coral-infantil.jpg" alt="Coral infantil - 2022">
+                <img src="./fotos/2022/momento-bencao.jpg" alt="Momento de bênção - 2022">
               </div>
             </div>
             
@@ -535,9 +659,9 @@
                 <i class="fas fa-gift"></i> Doações e Presentes
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?children,gifts,receiving,joy" alt="Crianças recebendo presentes">
-                <img src="https://source.unsplash.com/300x200/?volunteers,distributing,toys,charity" alt="Voluntários distribuindo brinquedos">
-                <img src="https://source.unsplash.com/300x200/?kids,happy,presents,celebration" alt="Alegria ao receber presentes">
+                <img src="./fotos/2022/criancas-recebendo-presentes.jpg" alt="Crianças recebendo presentes - 2022">
+                <img src="./fotos/2022/voluntarios-distribuindo.jpg" alt="Voluntários distribuindo brinquedos - 2022">
+                <img src="./fotos/2022/alegria-presentes.jpg" alt="Alegria ao receber presentes - 2022">
               </div>
             </div>
           </div>
@@ -557,10 +681,10 @@
                 <i class="fas fa-gamepad"></i> Brincadeiras e Atividades
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?kids,water,games,summer" alt="Brincadeiras com água">
-                <img src="https://source.unsplash.com/300x200/?children,treasure,hunt,adventure" alt="Caça ao tesouro">
-                <img src="https://source.unsplash.com/300x200/?kids,craft,making,creative" alt="Atividades artísticas">
-                <img src="https://source.unsplash.com/300x200/?children,sports,games,team" alt="Jogos esportivos">
+                <img src="./fotos/2023/brincadeiras-agua.jpg" alt="Brincadeiras com água - 2023">
+                <img src="./fotos/2023/caca-tesouro.jpg" alt="Caça ao tesouro - 2023">
+                <img src="./fotos/2023/atividades-artisticas.jpg" alt="Atividades artísticas - 2023">
+                <img src="./fotos/2023/jogos-esportivos.jpg" alt="Jogos esportivos - 2023">
               </div>
             </div>
             
@@ -569,9 +693,9 @@
                 <i class="fas fa-microphone"></i> Palestras e Ensinamentos
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?children,theater,performance,stage" alt="Apresentação teatral">
-                <img src="https://source.unsplash.com/300x200/?kids,puppet,show,entertainment" alt="Teatro de fantoches">
-                <img src="https://source.unsplash.com/300x200/?children,story,telling,bible" alt="Contação de histórias bíblicas">
+                <img src="./fotos/2023/apresentacao-teatral.jpg" alt="Apresentação teatral - 2023">
+                <img src="./fotos/2023/teatro-fantoches.jpg" alt="Teatro de fantoches - 2023">
+                <img src="./fotos/2023/historias-biblicas.jpg" alt="Contação de histórias bíblicas - 2023">
               </div>
             </div>
             
@@ -580,9 +704,9 @@
                 <i class="fas fa-users"></i> Comunidade e Voluntários
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?volunteers,helping,children,community" alt="Voluntários em ação">
-                <img src="https://source.unsplash.com/300x200/?families,together,celebration,church" alt="Famílias participando">
-                <img src="https://source.unsplash.com/300x200/?community,unity,hands,together" alt="União da comunidade">
+                <img src="./fotos/2023/voluntarios-acao.jpg" alt="Voluntários em ação - 2023">
+                <img src="./fotos/2023/familias-participando.jpg" alt="Famílias participando - 2023">
+                <img src="./fotos/2023/uniao-comunidade.jpg" alt="União da comunidade - 2023">
               </div>
             </div>
             
@@ -591,9 +715,9 @@
                 <i class="fas fa-camera"></i> Momentos Especiais
               </div>
               <div class="photo-grid">
-                <img src="https://source.unsplash.com/300x200/?children,smiling,happiness,joy" alt="Sorrisos das crianças">
-                <img src="https://source.unsplash.com/300x200/?kids,group,photo,celebration" alt="Foto em grupo">
-                <img src="https://source.unsplash.com/300x200/?children,hugging,love,care" alt="Momentos de carinho">
+                <img src="./fotos/2023/sorrisos-criancas.jpg" alt="Sorrisos das crianças - 2023">
+                <img src="./fotos/2023/foto-grupo.jpg" alt="Foto em grupo - 2023">
+                <img src="./fotos/2023/momentos-carinho.jpg" alt="Momentos de carinho - 2023">
               </div>
             </div>
           </div>
@@ -601,9 +725,34 @@
       </div>
     </div>
 
+    <div class="contact-section">
+      <h2 class="contact-title"><i class="fas fa-heart"></i> Faça Parte do Sonho</h2>
+      <p class="contact-subtitle">Acompanhe nossos projetos e participe desta missão de amor</p>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="contact-btn">
+          <i class="fab fa-instagram"></i> @I.B.E.M.G
+        </a>
+        <a href="tel:+5571992801895" class="contact-btn">
+          <i class="fas fa-phone"></i> (71) 9 9280-1895
+        </a>
+        <a href="mailto:comunicacaoibemanuelmg@gmail.com" class="contact-btn">
+          <i class="fas fa-envelope"></i> Enviar E-mail
+        </a>
+      </div>
+    </div>
+
     <footer>
+      <div class="social-links">
+        <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="social-link">
+          <i class="fab fa-instagram"></i> Siga-nos no Instagram @I.B.E.M.G
+        </a>
+        <a href="mailto:comunicacaoibemanuelmg@gmail.com" class="social-link">
+          <i class="fas fa-envelope"></i> Entre em Contato
+        </a>
+      </div>
       <p>Feito com <i class="fas fa-heart footer-heart"></i> pela Igreja Batista Emanuel de Monte Gordo</p>
       <p>© 2025 • Todos os direitos reservados • Continuamos sonhando e realizando</p>
+      <p><i class="fas fa-map-marker-alt"></i> Monte Gordo, Bahia • <i class="fas fa-phone"></i> (71) 9 9280-1895</p>
     </footer>
   </div>
 </body>
