@@ -4,14 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sonho de Criança • Celebração Infantil - Igreja Batista Emanuel</title>
+  
+  <!-- Meta Tags SEO -->
+  <meta name="description" content="Projeto Sonho de Criança da Igreja Batista Emanuel de Monte Gordo. Transformando vidas através do amor de Cristo desde 2021.">
+  <meta name="keywords" content="igreja batista, monte gordo, projeto criança, sonho criança, emanuel">
+  <meta name="author" content="Igreja Batista Emanuel de Monte Gordo">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./fotos/logo/logo-favicon.png">
+  <link rel="apple-touch-icon" href="./fotos/logo/logo-principal.png">
+  
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+/* Gradiente principal do fundo */
+background: linear-gradient(135deg, #4a90e2 0%, #2c5aa0 25%, #5dade2 50%, #3498db 75%, #87ceeb 100%);
+
+/* Cores dos botões */
+.contact-btn {
+  background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+}
+
+/* Timeline */
+.timeline::after {
+  background: linear-gradient(to bottom, #4a90e2, #2c5aa0, #87ceeb);
+}
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -75,6 +99,31 @@
     .container {
       position: relative;
       z-index: 1;
+    }
+
+    /* Logo Styles */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .logo-container img {
+      max-width: 300px;
+      height: auto;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)) brightness(1.1);
     }
 
     .header {
@@ -176,63 +225,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    .contact-section {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border-radius: 30px;
-      padding: 50px 30px;
-      margin: 60px auto;
-      max-width: 800px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .contact-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .contact-subtitle {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 30px;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .contact-btn {
-      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
-      color: white;
-      padding: 15px 30px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
-      border: 2px solid transparent;
-    }
-
-    .contact-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 35px rgba(74, 144, 226, 0.5);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: white;
-    }
-
-    .contact-btn i {
-      margin-right: 10px;
-      font-size: 1.3rem;
     }
 
     .timeline-entry::after {
@@ -426,6 +418,81 @@
       margin-top: 10px;
     }
 
+    .contact-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 50px 30px;
+      margin: 60px auto;
+      max-width: 800px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+      border: 2px solid transparent;
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(74, 144, 226, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    .contact-btn i {
+      margin-right: 10px;
+      font-size: 1.3rem;
+    }
+
+    .contact-btn.whatsapp {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+    }
+
+    .contact-btn.whatsapp:hover {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+    }
+
+    .contact-btn.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    .contact-btn.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 15px 35px rgba(240, 148, 51, 0.5);
+    }
+
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -483,24 +550,6 @@
       box-shadow: 0 10px 25px rgba(240, 148, 51, 0.4);
     }
 
-    .contact-btn.whatsapp {
-      background: linear-gradient(45deg, #25d366, #128c7e);
-    }
-
-    .contact-btn.whatsapp:hover {
-      background: linear-gradient(45deg, #25d366, #128c7e);
-      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
-    }
-
-    .contact-btn.instagram {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    }
-
-    .contact-btn.instagram:hover {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      box-shadow: 0 15px 35px rgba(240, 148, 51, 0.5);
-    }
-
     .social-link i {
       margin-right: 8px;
     }
@@ -518,6 +567,10 @@
 
     /* Responsive Design */
     @media screen and (max-width: 768px) {
+      .logo-container img {
+        max-width: 250px !important;
+      }
+      
       .timeline::after {
         left: 30px;
         margin-left: 0;
@@ -580,6 +633,10 @@
     }
 
     @media screen and (max-width: 480px) {
+      .logo-container img {
+        max-width: 200px !important;
+      }
+      
       .timeline-entry {
         padding: 20px 50px 20px 60px;
       }
@@ -614,6 +671,11 @@
   <div class="container">
     <header class="header">
       <div class="header-content">
+        <!-- Logo Principal do Projeto -->
+        <div class="logo-container">
+          <img src="https://drive.google.com/file/d/1qnnBBNjTj5Pqw16pe8IF_KJz6CeBqD6q/view?usp=sharing" alt="Projeto Sonho de Criança - Igreja Batista Emanuel">
+        </div>
+        
         <h1>Projeto Sonho de Criança</h1>
         <i class="fas fa-church church-icon"></i>
         <p class="subtitle">Igreja Batista Emanuel de Monte Gordo • Transformando vidas através do amor</p>
@@ -792,6 +854,10 @@
     </div>
 
     <footer>
+      <div class="social-links">
+       
+      </div>
+      
       <p>Feito com <i class="fas fa-heart footer-heart"></i> pela Igreja Batista Emanuel de Monte Gordo</p>
       <p>© 2025 • Todos os direitos reservados • Continuamos sonhando e realizando</p>
       <p><i class="fas fa-map-marker-alt"></i> Monte Gordo, Bahia • <i class="fas fa-phone"></i> (71) 9 9280-1895</p>
