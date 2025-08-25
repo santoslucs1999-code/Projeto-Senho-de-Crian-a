@@ -16,7 +16,7 @@
     body {
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background: linear-gradient(135deg, #4a90e2 0%, #2c5aa0 25%, #5dade2 50%, #3498db 75%, #87ceeb 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       min-height: 100vh;
@@ -103,7 +103,7 @@
     h1 {
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 800;
-      background: linear-gradient(45deg, #fff, #ffd700, #ff69b4, #87ceeb);
+      background: linear-gradient(45deg, #fff, #87ceeb, #4a90e2, #2c5aa0);
       background-size: 300% 300%;
       background-clip: text;
       -webkit-background-clip: text;
@@ -149,13 +149,13 @@
       content: '';
       position: absolute;
       width: 6px;
-      background: linear-gradient(to bottom, #ffd700, #ff69b4, #87ceeb);
+      background: linear-gradient(to bottom, #4a90e2, #2c5aa0, #87ceeb);
       top: 0;
       bottom: 0;
       left: 50%;
       margin-left: -3px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
     }
 
     .timeline-entry {
@@ -184,18 +184,18 @@
       width: 30px;
       height: 30px;
       right: -15px;
-      background: linear-gradient(45deg, #ffd700, #ff69b4);
+      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
       border: 4px solid #fff;
       top: 40px;
       border-radius: 50%;
       z-index: 2;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      box-shadow: 0 0 20px rgba(74, 144, 226, 0.6);
       animation: glow 2s ease-in-out infinite alternate;
     }
 
     @keyframes glow {
-      from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
-      to { box-shadow: 0 0 30px rgba(255, 105, 180, 0.8); }
+      from { box-shadow: 0 0 20px rgba(74, 144, 226, 0.6); }
+      to { box-shadow: 0 0 30px rgba(52, 152, 219, 0.8); }
     }
 
     .left {
@@ -249,14 +249,14 @@
 
     .year-badge {
       display: inline-block;
-      background: linear-gradient(45deg, #667eea, #764ba2);
+      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
       color: white;
       padding: 8px 20px;
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.9rem;
       margin-bottom: 15px;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
     }
 
     .card h2 {
@@ -274,12 +274,50 @@
 
     .card img {
       width: 100%;
-      height: 200px;
+      height: 180px;
       object-fit: cover;
       border-radius: 15px;
       margin-top: 15px;
       transition: transform 0.4s ease;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo-gallery {
+      margin-top: 20px;
+    }
+
+    .gallery-section {
+      margin-bottom: 25px;
+    }
+
+    .gallery-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2c5aa0;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .photo-grid img {
+      height: 100px;
+      margin-top: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .photo-grid img:hover {
+      transform: scale(1.1);
+      z-index: 10;
+      position: relative;
     }
 
     .card:hover img {
@@ -319,7 +357,7 @@
     .stat-number {
       font-size: 3rem;
       font-weight: 800;
-      background: linear-gradient(45deg, #ffd700, #ff69b4);
+      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -342,7 +380,7 @@
     }
 
     .footer-heart {
-      color: #ff69b4;
+      color: #4a90e2;
       animation: heartbeat 1.5s ease-in-out infinite;
       margin: 0 5px;
     }
@@ -433,7 +471,31 @@
           <span class="year-badge">2021</span>
           <h2><i class="fas fa-star"></i> O Início do Sonho</h2>
           <p>Nossa primeira edição nasceu do desejo de levar alegria, brinquedos, brincadeiras e principalmente o amor de Cristo às crianças da nossa comunidade. Um pequeno início que plantou sementes de esperança.</p>
-          <img src="https://source.unsplash.com/800x400/?kids,play,community,church" alt="Primeira edição do Sonho de Criança em 2021">
+          
+          <div class="photo-gallery">
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-gamepad"></i> Brincadeiras e Atividades
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?kids,playground,games,fun" alt="Crianças brincando no parquinho">
+                <img src="https://source.unsplash.com/300x200/?children,playing,toys,church" alt="Atividades com brinquedos">
+                <img src="https://source.unsplash.com/300x200/?kids,running,outdoor,play" alt="Brincadeiras ao ar livre">
+                <img src="https://source.unsplash.com/300x200/?children,circle,games,community" alt="Brincadeiras em roda">
+              </div>
+            </div>
+            
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-microphone"></i> Palestras e Ensinamentos
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?pastor,speaking,children,church" alt="Pastor falando para crianças">
+                <img src="https://source.unsplash.com/300x200/?bible,kids,teaching,lesson" alt="Ensino bíblico para crianças">
+                <img src="https://source.unsplash.com/300x200/?children,listening,story,church" alt="Crianças atentas à história">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -443,7 +505,42 @@
           <span class="year-badge">2022</span>
           <h2><i class="fas fa-music"></i> Crescendo em Amor</h2>
           <p>O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão.</p>
-          <img src="https://source.unsplash.com/800x400/?children,event,church,celebration" alt="Segunda edição com mais crianças e atividades em 2022">
+          
+          <div class="photo-gallery">
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-gamepad"></i> Brincadeiras e Diversão
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?kids,bouncy,castle,party" alt="Pula-pula e diversão">
+                <img src="https://source.unsplash.com/300x200/?children,face,paint,festival" alt="Pintura facial">
+                <img src="https://source.unsplash.com/300x200/?kids,balloon,animals,party" alt="Animação com balões">
+                <img src="https://source.unsplash.com/300x200/?children,dancing,music,celebration" alt="Crianças dançando">
+              </div>
+            </div>
+            
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-microphone"></i> Palestras e Momentos Especiais
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?children,prayer,circle,church" alt="Momento de oração">
+                <img src="https://source.unsplash.com/300x200/?kids,singing,choir,church" alt="Coral infantil">
+                <img src="https://source.unsplash.com/300x200/?pastor,children,blessing,church" alt="Momento de bênção">
+              </div>
+            </div>
+            
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-gift"></i> Doações e Presentes
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?children,gifts,receiving,joy" alt="Crianças recebendo presentes">
+                <img src="https://source.unsplash.com/300x200/?volunteers,distributing,toys,charity" alt="Voluntários distribuindo brinquedos">
+                <img src="https://source.unsplash.com/300x200/?kids,happy,presents,celebration" alt="Alegria ao receber presentes">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -453,7 +550,53 @@
           <span class="year-badge">2023</span>
           <h2><i class="fas fa-hands-helping"></i> A Edição Mais Especial</h2>
           <p>Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária cheia de fé, esperança e amor. Cada criança foi verdadeiramente abençoada.</p>
-          <img src="https://source.unsplash.com/800x400/?happy,kids,celebration,community" alt="Edição especial de 2023 com toda a comunidade">
+          
+          <div class="photo-gallery">
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-gamepad"></i> Brincadeiras e Atividades
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?kids,water,games,summer" alt="Brincadeiras com água">
+                <img src="https://source.unsplash.com/300x200/?children,treasure,hunt,adventure" alt="Caça ao tesouro">
+                <img src="https://source.unsplash.com/300x200/?kids,craft,making,creative" alt="Atividades artísticas">
+                <img src="https://source.unsplash.com/300x200/?children,sports,games,team" alt="Jogos esportivos">
+              </div>
+            </div>
+            
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-microphone"></i> Palestras e Ensinamentos
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?children,theater,performance,stage" alt="Apresentação teatral">
+                <img src="https://source.unsplash.com/300x200/?kids,puppet,show,entertainment" alt="Teatro de fantoches">
+                <img src="https://source.unsplash.com/300x200/?children,story,telling,bible" alt="Contação de histórias bíblicas">
+              </div>
+            </div>
+            
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-users"></i> Comunidade e Voluntários
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?volunteers,helping,children,community" alt="Voluntários em ação">
+                <img src="https://source.unsplash.com/300x200/?families,together,celebration,church" alt="Famílias participando">
+                <img src="https://source.unsplash.com/300x200/?community,unity,hands,together" alt="União da comunidade">
+              </div>
+            </div>
+            
+            <div class="gallery-section">
+              <div class="gallery-title">
+                <i class="fas fa-camera"></i> Momentos Especiais
+              </div>
+              <div class="photo-grid">
+                <img src="https://source.unsplash.com/300x200/?children,smiling,happiness,joy" alt="Sorrisos das crianças">
+                <img src="https://source.unsplash.com/300x200/?kids,group,photo,celebration" alt="Foto em grupo">
+                <img src="https://source.unsplash.com/300x200/?children,hugging,love,care" alt="Momentos de carinho">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
