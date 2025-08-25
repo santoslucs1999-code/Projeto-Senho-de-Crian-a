@@ -438,6 +438,10 @@
 
     .social-links {
       margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
     .social-link {
@@ -447,7 +451,7 @@
       padding: 12px 25px;
       border-radius: 50px;
       text-decoration: none;
-      margin: 10px 15px;
+      margin: 5px;
       font-weight: 600;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
@@ -461,6 +465,15 @@
       color: white;
     }
 
+    .social-link.whatsapp {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+    }
+
+    .social-link.whatsapp:hover {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    }
+
     .social-link.instagram {
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     }
@@ -468,6 +481,15 @@
     .social-link.instagram:hover {
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       box-shadow: 0 10px 25px rgba(240, 148, 51, 0.4);
+    }
+
+    .contact-btn.whatsapp {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+    }
+
+    .contact-btn.whatsapp:hover {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
     }
 
     .contact-btn.instagram {
@@ -537,8 +559,23 @@
 
       .contact-btn {
         width: 100%;
-        max-width: 300px;
-        margin: 10px 0;
+        max-width: 280px;
+        margin: 8px 0;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-link {
+        margin: 5px 0;
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
       }
     }
 
@@ -553,6 +590,16 @@
 
       .stat-item {
         padding: 20px 15px;
+      }
+
+      .contact-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+
+      .social-link {
+        font-size: 0.85rem;
+        padding: 8px 15px;
       }
     }
   </style>
@@ -729,11 +776,14 @@
       <h2 class="contact-title"><i class="fas fa-heart"></i> Faça Parte do Sonho</h2>
       <p class="contact-subtitle">Acompanhe nossos projetos e participe desta missão de amor</p>
       <div class="contact-links">
-        <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="contact-btn">
+        <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="contact-btn instagram">
           <i class="fab fa-instagram"></i> @I.B.E.M.G
         </a>
+        <a href="https://wa.me/5571992801895?text=Olá! Gostaria de saber mais sobre o Projeto Sonho de Criança 😊" target="_blank" class="contact-btn whatsapp">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
         <a href="tel:+5571992801895" class="contact-btn">
-          <i class="fas fa-phone"></i> (71) 9 9280-1895
+          <i class="fas fa-phone"></i> Ligar Agora
         </a>
         <a href="mailto:comunicacaoibemanuelmg@gmail.com" class="contact-btn">
           <i class="fas fa-envelope"></i> Enviar E-mail
@@ -742,14 +792,6 @@
     </div>
 
     <footer>
-      <div class="social-links">
-        <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="social-link">
-          <i class="fab fa-instagram"></i> Siga-nos no Instagram @I.B.E.M.G
-        </a>
-        <a href="mailto:comunicacaoibemanuelmg@gmail.com" class="social-link">
-          <i class="fas fa-envelope"></i> Entre em Contato
-        </a>
-      </div>
       <p>Feito com <i class="fas fa-heart footer-heart"></i> pela Igreja Batista Emanuel de Monte Gordo</p>
       <p>© 2025 • Todos os direitos reservados • Continuamos sonhando e realizando</p>
       <p><i class="fas fa-map-marker-alt"></i> Monte Gordo, Bahia • <i class="fas fa-phone"></i> (71) 9 9280-1895</p>
