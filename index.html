@@ -10,7 +10,7 @@
   <meta name="keywords" content="igreja batista, monte gordo, projeto criança, sonho criança, emanuel">
   <meta name="author" content="Igreja Batista Emanuel de Monte Gordo">
   
-  <!-- Favicon - CORRIGIDO -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="./logo-principal.png">
   <link rel="apple-touch-icon" href="./logo-principal.png">
   
@@ -182,10 +182,6 @@
       padding: 60px 0;
     }
 
-    .timeline::after {
-      display: none;
-    }
-
     .timeline-entry {
       padding: 0;
       position: relative;
@@ -194,7 +190,6 @@
       animation: slideIn 0.8s ease-out forwards;
       opacity: 0;
       transform: translateY(50px);
-      left: 0 !important;
     }
 
     .timeline-entry:nth-child(1) { animation-delay: 0.2s; }
@@ -208,139 +203,175 @@
       }
     }
 
-    .timeline-entry::after {
-      display: none;
-    }
-
-    .left {
-      left: 0;
-    }
-
-    .right {
-      left: 0;
-    }
-
-    .card {
-      background: none;
-      backdrop-filter: none;
-      color: #333;
-      padding: 0;
-      border-radius: 30px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      cursor: pointer;
-      height: 500px;
+    /* Layout para texto e foto lado a lado */
+    .timeline-container {
+      display: flex;
       max-width: 1200px;
       margin: 0 auto;
+      align-items: stretch;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+      cursor: pointer;
     }
 
-    .card::before {
+    .timeline-container:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .text-side {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .photo-side {
+      flex: 1;
+      position: relative;
+      min-height: 500px;
+    }
+
+    /* Estilo específico para layout direito (2023) */
+    .right-layout {
+      flex-direction: row-reverse;
+    }
+
+    .right-layout .photo-side::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+      background: linear-gradient(45deg, rgba(74, 144, 226, 0.3), rgba(44, 90, 160, 0.6));
       z-index: 2;
-      transition: all 0.4s ease;
+      pointer-events: none;
     }
 
-    .card:hover::before {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+    /* Carrossel de fotos */
+    .photo-carousel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Novo layout para conteúdo */
-    .card-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+    .photo-track {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
-      padding: 60px;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
     }
 
-    .text-content {
-      text-align: center;
-      color: white;
-      max-width: 600px;
+    .photo-item {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
     }
 
-    .image-content {
-      display: none;
-    }
-
-    .timeline-image {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .photo-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 1;
-      transition: all 0.4s ease;
     }
 
-    .card:hover .timeline-image {
-      transform: scale(1.05);
+    /* Controles do carrossel */
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #2c5aa0;
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .timeline-container:hover .carousel-controls {
+      opacity: 1;
+    }
+
+    .carousel-controls:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .prev-btn {
+      left: 20px;
+    }
+
+    .next-btn {
+      right: 20px;
+    }
+
+    /* Indicadores de foto */
+    .photo-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background: rgba(255, 255, 255, 0.9);
+      transform: scale(1.2);
     }
 
     .year-badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.9);
-      color: #2c5aa0;
+      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+      color: white;
       padding: 12px 24px;
       border-radius: 50px;
       font-weight: 700;
       font-size: 1.1rem;
       margin-bottom: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
     }
 
-    .card h2 {
-      color: white;
+    .text-side h2 {
+      color: #2c3e50;
       margin: 20px 0;
       font-weight: 700;
       font-size: 2.5rem;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       line-height: 1.2;
     }
 
-    .card p {
+    .text-side p {
       line-height: 1.8;
-      color: rgba(255, 255, 255, 0.95);
+      color: #555;
       margin-bottom: 0;
       font-size: 1.2rem;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       font-weight: 400;
-    }
-
-    .timeline-image {
-      width: 100%;
-      max-width: 450px;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .timeline-image:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     }
 
     .year-icon {
@@ -348,10 +379,8 @@
       top: 30px;
       right: 30px;
       font-size: 3rem;
-      opacity: 0.3;
-      color: white;
-      z-index: 4;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.1;
+      color: #4a90e2;
     }
 
     .stats {
@@ -475,57 +504,6 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .social-links {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .social-link {
-      display: inline-block;
-      background: rgba(74, 144, 226, 0.8);
-      color: white;
-      padding: 12px 25px;
-      border-radius: 50px;
-      text-decoration: none;
-      margin: 5px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .social-link:hover {
-      background: rgba(52, 152, 219, 0.9);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
-      color: white;
-    }
-
-    .social-link.whatsapp {
-      background: linear-gradient(45deg, #25d366, #128c7e);
-    }
-
-    .social-link.whatsapp:hover {
-      background: linear-gradient(45deg, #25d366, #128c7e);
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-    }
-
-    .social-link.instagram {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    }
-
-    .social-link.instagram:hover {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      box-shadow: 0 10px 25px rgba(240, 148, 51, 0.4);
-    }
-
-    .social-link i {
-      margin-right: 8px;
-    }
-
     .footer-heart {
       color: #4a90e2;
       animation: heartbeat 1.5s ease-in-out infinite;
@@ -539,21 +517,24 @@
 
     /* Responsive Design */
     @media screen and (max-width: 1024px) {
-      .card {
-        height: 450px;
+      .timeline-container {
         margin: 0 20px;
       }
 
-      .card-content {
+      .text-side {
         padding: 50px 40px;
       }
 
-      .card h2 {
+      .text-side h2 {
         font-size: 2.2rem;
       }
 
-      .card p {
+      .text-side p {
         font-size: 1.1rem;
+      }
+
+      .photo-side {
+        min-height: 450px;
       }
     }
 
@@ -566,28 +547,33 @@
         margin-bottom: 60px;
       }
 
-      .card {
-        height: 400px;
+      .timeline-container {
+        flex-direction: column !important;
         margin: 0 20px;
-        border-radius: 20px;
       }
 
-      .card-content {
+      .right-layout {
+        flex-direction: column !important;
+      }
+
+      .text-side {
         padding: 40px 30px;
       }
 
-      .card h2 {
+      .text-side h2 {
         font-size: 1.8rem;
       }
 
-      .card p {
+      .text-side p {
         font-size: 1rem;
       }
 
-      .year-icon {
-        font-size: 2.5rem;
-        top: 25px;
-        right: 25px;
+      .photo-side {
+        min-height: 300px;
+      }
+
+      .carousel-controls {
+        opacity: 1;
       }
 
       .stats {
@@ -618,21 +604,6 @@
         max-width: 280px;
         margin: 8px 0;
       }
-
-      .social-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .social-link {
-        margin: 5px 0;
-        font-size: 0.9rem;
-        padding: 10px 20px;
-        width: 100%;
-        max-width: 280px;
-        text-align: center;
-      }
     }
 
     @media screen and (max-width: 480px) {
@@ -644,22 +615,20 @@
         margin-bottom: 50px;
       }
 
-      .card {
-        height: 350px;
+      .timeline-container {
         margin: 0 15px;
-        border-radius: 15px;
       }
 
-      .card-content {
+      .text-side {
         padding: 30px 25px;
       }
 
-      .card h2 {
+      .text-side h2 {
         font-size: 1.5rem;
         margin: 15px 0;
       }
 
-      .card p {
+      .text-side p {
         font-size: 0.95rem;
         line-height: 1.6;
       }
@@ -670,10 +639,22 @@
         margin-bottom: 15px;
       }
 
-      .year-icon {
-        font-size: 2rem;
-        top: 20px;
-        right: 20px;
+      .photo-side {
+        min-height: 250px;
+      }
+
+      .carousel-controls {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .prev-btn {
+        left: 15px;
+      }
+
+      .next-btn {
+        right: 15px;
       }
 
       .stat-item {
@@ -683,11 +664,6 @@
       .contact-btn {
         font-size: 1rem;
         padding: 12px 20px;
-      }
-
-      .social-link {
-        font-size: 0.85rem;
-        padding: 8px 15px;
       }
     }
   </style>
@@ -732,43 +708,115 @@
     </div>
 
     <div class="timeline">
-      <div class="timeline-entry left">
-        <div class="card">
-          <img src="./2022-1.jpeg" alt="Projeto Sonho de Criança - 2022" class="timeline-image">
-          <i class="fas fa-heart year-icon"></i>
-          <div class="card-content">
-            <div class="text-content">
-              <span class="year-badge">2022</span>
-              <h2><i class="fas fa-music"></i> Crescendo em Amor</h2>
-              <p>O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão.</p>
+      <!-- 2022 - Lado Esquerdo -->
+      <div class="timeline-entry">
+        <div class="timeline-container">
+          <div class="text-side">
+            <i class="fas fa-heart year-icon"></i>
+            <span class="year-badge">2022</span>
+            <h2><i class="fas fa-music"></i> Crescendo em Amor</h2>
+            <p>O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão.</p>
+          </div>
+          <div class="photo-side">
+            <div class="photo-carousel" data-carousel="2022">
+              <div class="photo-track" data-track="2022">
+                <div class="photo-item">
+                  <img src="./2022-1.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 1">
+                </div>
+                <div class="photo-item">
+                  <img src="./2022-2.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 2" onerror="this.src='./2022-1.jpeg'">
+                </div>
+                <div class="photo-item">
+                  <img src="./2022-3.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 3" onerror="this.src='./2022-1.jpeg'">
+                </div>
+              </div>
+              <button class="carousel-controls prev-btn" onclick="prevPhoto('2022')">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="carousel-controls next-btn" onclick="nextPhoto('2022')">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div class="photo-indicators" data-indicators="2022">
+                <span class="indicator active" onclick="goToPhoto('2022', 0)"></span>
+                <span class="indicator" onclick="goToPhoto('2022', 1)"></span>
+                <span class="indicator" onclick="goToPhoto('2022', 2)"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="timeline-entry right">
-        <div class="card">
-          <img src="./2023-1.jpeg" alt="Projeto Sonho de Criança - 2023" class="timeline-image">
-          <i class="fas fa-crown year-icon"></i>
-          <div class="card-content">
-            <div class="text-content">
-              <span class="year-badge">2023</span>
-              <h2><i class="fas fa-hands-helping"></i> A Edição Mais Especial</h2>
-              <p>Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária cheia de fé, esperança e amor. Cada criança foi verdadeiramente abençoada.</p>
+      <!-- 2023 - Lado Direito com degradê -->
+      <div class="timeline-entry">
+        <div class="timeline-container right-layout">
+          <div class="text-side">
+            <i class="fas fa-crown year-icon"></i>
+            <span class="year-badge">2023</span>
+            <h2><i class="fas fa-hands-helping"></i> A Edição Mais Especial</h2>
+            <p>Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária cheia de fé, esperança e amor. Cada criança foi verdadeiramente abençoada.</p>
+          </div>
+          <div class="photo-side">
+            <div class="photo-carousel" data-carousel="2023">
+              <div class="photo-track" data-track="2023">
+                <div class="photo-item">
+                  <img src="./2023-1.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 1">
+                </div>
+                <div class="photo-item">
+                  <img src="./2023-2.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 2" onerror="this.src='./2023-1.jpeg'">
+                </div>
+                <div class="photo-item">
+                  <img src="./2023-3.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 3" onerror="this.src='./2023-1.jpeg'">
+                </div>
+              </div>
+              <button class="carousel-controls prev-btn" onclick="prevPhoto('2023')">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="carousel-controls next-btn" onclick="nextPhoto('2023')">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div class="photo-indicators" data-indicators="2023">
+                <span class="indicator active" onclick="goToPhoto('2023', 0)"></span>
+                <span class="indicator" onclick="goToPhoto('2023', 1)"></span>
+                <span class="indicator" onclick="goToPhoto('2023', 2)"></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="timeline-entry left">
-        <div class="card">
-          <img src="./2024-1.jpeg" alt="Projeto Sonho de Criança - 2024" class="timeline-image">
-          <i class="fas fa-rocket year-icon"></i>
-          <div class="card-content">
-            <div class="text-content">
-              <span class="year-badge">2024</span>
-              <h2><i class="fas fa-trophy"></i> Expandindo Horizontes</h2>
-              <p>O projeto continua crescendo e evoluindo! Novas atividades, mais parcerias e um impacto ainda maior na comunidade. Cada ano que passa, mais corações são tocados pelo amor de Cristo através deste ministério.</p>
+      <!-- 2024 - Lado Esquerdo -->
+      <div class="timeline-entry">
+        <div class="timeline-container">
+          <div class="text-side">
+            <i class="fas fa-rocket year-icon"></i>
+            <span class="year-badge">2024</span>
+            <h2><i class="fas fa-trophy"></i> Expandindo Horizontes</h2>
+            <p>O projeto continua crescendo e evoluindo! Novas atividades, mais parcerias e um impacto ainda maior na comunidade. Cada ano que passa, mais corações são tocados pelo amor de Cristo através deste ministério.</p>
+          </div>
+          <div class="photo-side">
+            <div class="photo-carousel" data-carousel="2024">
+              <div class="photo-track" data-track="2024">
+                <div class="photo-item">
+                  <img src="./2024-1.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 1">
+                </div>
+                <div class="photo-item">
+                  <img src="./2024-2.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 2" onerror="this.src='./2024-1.jpeg'">
+                </div>
+                <div class="photo-item">
+                  <img src="./2024-3.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 3" onerror="this.src='./2024-1.jpeg'">
+                </div>
+              </div>
+              <button class="carousel-controls prev-btn" onclick="prevPhoto('2024')">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="carousel-controls next-btn" onclick="nextPhoto('2024')">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div class="photo-indicators" data-indicators="2024">
+                <span class="indicator active" onclick="goToPhoto('2024', 0)"></span>
+                <span class="indicator" onclick="goToPhoto('2024', 1)"></span>
+                <span class="indicator" onclick="goToPhoto('2024', 2)"></span>
+              </div>
             </div>
           </div>
         </div>
@@ -795,15 +843,71 @@
     </div>
 
     <footer>
-      <div class="social-links">
-        
-      </div>
-      
       <p>Feito com <i class="fas fa-heart footer-heart"></i> pela Igreja Batista Emanuel de Monte Gordo</p>
       <p>© 2025 • Todos os direitos reservados • Continuamos sonhando e realizando</p>
       <p><i class="fas fa-map-marker-alt"></i> Monte Gordo, Bahia • <i class="fas fa-phone"></i> (71) 9 9280-1895</p>
     </footer>
   </div>
+
+  <script>
+    // Sistema de carrossel para as fotos
+    const carousels = {};
+    
+    // Inicializar todos os carrosseis
+    document.querySelectorAll('[data-carousel]').forEach(carousel => {
+      const year = carousel.dataset.carousel;
+      carousels[year] = {
+        currentIndex: 0,
+        totalPhotos: carousel.querySelectorAll('.photo-item').length
+      };
+    });
+
+    function updateCarousel(year) {
+      const track = document.querySelector(`[data-track="${year}"]`);
+      const indicators = document.querySelectorAll(`[data-indicators="${year}"] .indicator`);
+      
+      if (track && indicators) {
+        const translateX = -carousels[year].currentIndex * 100;
+        track.style.transform = `translateX(${translateX}%)`;
+        
+        // Atualizar indicadores
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('active', index === carousels[year].currentIndex);
+        });
+      }
+    }
+
+    function nextPhoto(year) {
+      if (carousels[year].currentIndex < carousels[year].totalPhotos - 1) {
+        carousels[year].currentIndex++;
+      } else {
+        carousels[year].currentIndex = 0; // Volta para a primeira
+      }
+      updateCarousel(year);
+    }
+
+    function prevPhoto(year) {
+      if (carousels[year].currentIndex > 0) {
+        carousels[year].currentIndex--;
+      } else {
+        carousels[year].currentIndex = carousels[year].totalPhotos - 1; // Vai para a última
+      }
+      updateCarousel(year);
+    }
+
+    function goToPhoto(year, index) {
+      carousels[year].currentIndex = index;
+      updateCarousel(year);
+    }
+
+    // Auto-play opcional (descomente se quiser)
+    /*
+    setInterval(() => {
+      Object.keys(carousels).forEach(year => {
+        nextPhoto(year);
+      });
+    }, 5000);
+    */
+  </script>
 </body>
 </html>
-
