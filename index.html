@@ -34,9 +34,6 @@
       min-height: 100vh;
       position: relative;
     }
-    .logo-img {
-  transform: rotate(90deg); /* ou -90deg, 180deg, dependendo da rotação necessária */
-}
 
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
@@ -110,10 +107,11 @@
       filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
       transition: all 0.3s ease;
       cursor: pointer;
+      transform: rotate(90deg);
     }
 
     .logo-container img:hover {
-      transform: scale(1.05);
+      transform: rotate(90deg) scale(1.05);
       filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)) brightness(1.1);
     }
 
@@ -268,11 +266,16 @@
     }
 
     .photo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 30px
-}
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     /* Controles do carrossel */
     .carousel-controls {
@@ -659,20 +662,22 @@
       }
       
       .timeline-entry {
-        margin-bottom: 50px;
+        margin-bottom: 40px;
       }
 
       .timeline-container {
-        margin: 0 15px;
+        margin: 0 10px;
+        border-radius: 20px;
       }
 
       .text-side {
-        padding: 30px 25px;
+        padding: 30px 20px;
       }
 
       .text-side h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         margin: 15px 0;
+        line-height: 1.3;
       }
 
       .text-side p {
@@ -681,13 +686,20 @@
       }
 
       .year-badge {
-        font-size: 1rem;
-        padding: 10px 20px;
-        margin-bottom: 15px;
+        font-size: 0.9rem;
+        padding: 8px 18px;
+        margin-bottom: 12px;
+      }
+
+      .year-icon {
+        font-size: 1.8rem;
+        top: 20px;
+        right: 20px;
       }
 
       .photo-side {
-        min-height: 250px;
+        min-height: 220px;
+        border-radius: 0 0 20px 20px;
       }
 
       .carousel-controls {
@@ -697,20 +709,72 @@
       }
 
       .prev-btn {
-        left: 15px;
+        left: 12px;
       }
 
       .next-btn {
-        right: 15px;
+        right: 12px;
+      }
+
+      .photo-indicators {
+        bottom: 12px;
+        gap: 6px;
+      }
+
+      .indicator {
+        width: 8px;
+        height: 8px;
       }
 
       .stat-item {
         padding: 20px 15px;
+        border-radius: 15px;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+
+      .header {
+        padding: 40px 10px 30px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+        padding: 0 5px;
+      }
+
+      .contact-section {
+        margin: 30px 10px;
+        padding: 30px 15px;
+        border-radius: 20px;
+      }
+
+      .contact-title {
+        font-size: 1.7rem;
+      }
+
+      .contact-subtitle {
+        font-size: 1rem;
       }
 
       .contact-btn {
         font-size: 1rem;
         padding: 12px 20px;
+        max-width: 280px;
+      }
+
+      footer {
+        padding: 30px 15px;
+        font-size: 0.9rem;
+      }
+
+      footer p {
+        margin: 8px 0;
       }
     }
   </style>
@@ -729,7 +793,6 @@
           <img src="./logo-principal.png" 
                alt="Projeto Sonho de Criança - Igreja Batista Emanuel de Monte Gordo" 
                title="Projeto Sonho de Criança - Transformando vidas através do amor"
-             style="transform: rotate(90deg);"
                onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=Projeto+Sonho+de+Criança';">
         </div>
         
@@ -771,7 +834,10 @@
                   <img src="./2022-1.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 1">
                 </div>
                 <div class="photo-item">
-                  <img src="./2022-2.mp4" alt="Projeto Sonho de Criança 2022 - Foto 2">
+                  <video controls muted>
+                    <source src="./2022-2.mp4" type="video/mp4">
+                    <img src="./2022-1.jpeg" alt="Vídeo não suportado">
+                  </video>
                 </div>
                 <div class="photo-item">
                   <img src="./2022-3.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 3" onerror="this.src='./2022-1.jpeg'">
@@ -793,7 +859,7 @@
         </div>
       </div>
 
-      <!-- 2023 - Lado Direito com degradê -->
+      <!-- 2023 - Lado Direito -->
       <div class="timeline-entry">
         <div class="timeline-container right-layout">
           <div class="text-side">
@@ -847,10 +913,10 @@
                   <img src="./2024-1.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 1">
                 </div>
                 <div class="photo-item">
-                  <img src="./2024-2.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 2">
+                  <img src="./2024-2.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 2" onerror="this.src='./2024-1.jpeg'">
                 </div>
                 <div class="photo-item">
-                  <img src="./2024-3.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 3">
+                  <img src="./2024-3.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 3" onerror="this.src='./2024-1.jpeg'">
                 </div>
               </div>
               <button class="carousel-controls prev-btn" onclick="prevPhoto('2024')">
@@ -946,25 +1012,6 @@
       carousels[year].currentIndex = index;
       updateCarousel(year);
     }
-
-    // Auto-play opcional (descomente se quiser)
-    /*
-    setInterval(() => {
-      Object.keys(carousels).forEach(year => {
-        nextPhoto(year);
-      });
-    }, 5000);
-    */
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
