@@ -177,7 +177,7 @@
 
     .timeline {
       position: relative;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 40px 20px;
     }
@@ -284,6 +284,29 @@
         0 0 0 1px rgba(255, 255, 255, 0.3);
     }
 
+    /* Novo layout para conteúdo lado a lado */
+    .card-content {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .text-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .image-content {
+      flex: 0 0 300px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Para cards do lado direito, invertemos a ordem */
+    .right .card-content {
+      flex-direction: row-reverse;
+    }
+
     .year-badge {
       display: inline-block;
       background: linear-gradient(45deg, #4a90e2, #2c5aa0);
@@ -306,56 +329,22 @@
     .card p {
       line-height: 1.7;
       color: #555;
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
 
-    .photo-gallery {
-      margin-top: 20px;
-    }
-
-    .gallery-section {
-      margin-bottom: 25px;
-    }
-
-    .gallery-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #2c5aa0;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 15px;
-      justify-items: center;
-    }
-
-    .photo-grid img {
+    .timeline-image {
       width: 100%;
-      max-width: 400px;
-      height: 300px;
+      height: 250px;
       object-fit: cover;
       border-radius: 15px;
-      margin-top: 0;
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .photo-grid img:hover {
+    .timeline-image:hover {
       transform: scale(1.05);
-      z-index: 10;
-      position: relative;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .card:hover img {
-      transform: scale(1.02);
     }
 
     .year-icon {
@@ -551,6 +540,20 @@
     }
 
     /* Responsive Design */
+    @media screen and (max-width: 1024px) {
+      .timeline {
+        max-width: 900px;
+      }
+      
+      .image-content {
+        flex: 0 0 250px;
+      }
+      
+      .timeline-image {
+        height: 200px;
+      }
+    }
+
     @media screen and (max-width: 768px) {
       .logo-container img {
         max-width: 250px !important;
@@ -570,6 +573,21 @@
 
       .timeline-entry::after {
         left: 15px !important;
+      }
+
+      /* Layout vertical em mobile */
+      .card-content {
+        flex-direction: column !important;
+        gap: 20px;
+      }
+
+      .text-content, .image-content {
+        flex: none;
+        width: 100%;
+      }
+
+      .timeline-image {
+        height: 250px;
       }
 
       .stats {
@@ -615,11 +633,6 @@
         max-width: 280px;
         text-align: center;
       }
-
-      .photo-grid img {
-        max-width: 100%;
-        height: 250px;
-      }
     }
 
     @media screen and (max-width: 480px) {
@@ -635,6 +648,14 @@
         padding: 20px;
       }
 
+      .card-content {
+        gap: 15px;
+      }
+
+      .timeline-image {
+        height: 200px;
+      }
+
       .stat-item {
         padding: 20px 15px;
       }
@@ -647,10 +668,6 @@
       .social-link {
         font-size: 0.85rem;
         padding: 8px 15px;
-      }
-
-      .photo-grid img {
-        height: 200px;
       }
     }
   </style>
@@ -698,18 +715,14 @@
       <div class="timeline-entry left">
         <div class="card">
           <i class="fas fa-heart year-icon"></i>
-          <span class="year-badge">2022</span>
-          <h2><i class="fas fa-music"></i> Crescendo em Amor</h2>
-          <p>O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão.</p>
-          
-          <div class="photo-gallery">
-            <div class="gallery-section">
-              <div class="gallery-title">
-                <i class="fas fa-camera"></i> Momentos de 2022
-              </div>
-              <div class="photo-grid">
-                <img src="./2022-1.jpeg" alt="Projeto Sonho de Criança - 2022" style="display: block;">
-              </div>
+          <div class="card-content">
+            <div class="text-content">
+              <span class="year-badge">2022</span>
+              <h2><i class="fas fa-music"></i> Crescendo em Amor</h2>
+              <p>O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão.</p>
+            </div>
+            <div class="image-content">
+              <img src="./2022-1.jpeg" alt="Projeto Sonho de Criança - 2022" class="timeline-image">
             </div>
           </div>
         </div>
@@ -718,18 +731,14 @@
       <div class="timeline-entry right">
         <div class="card">
           <i class="fas fa-crown year-icon"></i>
-          <span class="year-badge">2023</span>
-          <h2><i class="fas fa-hands-helping"></i> A Edição Mais Especial</h2>
-          <p>Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária cheia de fé, esperança e amor. Cada criança foi verdadeiramente abençoada.</p>
-          
-          <div class="photo-gallery">
-            <div class="gallery-section">
-              <div class="gallery-title">
-                <i class="fas fa-camera"></i> Momentos de 2023
-              </div>
-              <div class="photo-grid">
-                <img src="./2023-1.jpeg" alt="Projeto Sonho de Criança - 2023" style="display: block;">
-              </div>
+          <div class="card-content">
+            <div class="text-content">
+              <span class="year-badge">2023</span>
+              <h2><i class="fas fa-hands-helping"></i> A Edição Mais Especial</h2>
+              <p>Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária cheia de fé, esperança e amor. Cada criança foi verdadeiramente abençoada.</p>
+            </div>
+            <div class="image-content">
+              <img src="./2023-1.jpeg" alt="Projeto Sonho de Criança - 2023" class="timeline-image">
             </div>
           </div>
         </div>
@@ -738,26 +747,19 @@
       <div class="timeline-entry left">
         <div class="card">
           <i class="fas fa-rocket year-icon"></i>
-          <span class="year-badge">2024</span>
-          <h2><i class="fas fa-trophy"></i> Expandindo Horizontes</h2>
-          <p>O projeto continua crescendo e evoluindo! Novas atividades, mais parcerias e um impacto ainda maior na comunidade. Cada ano que passa, mais corações são tocados pelo amor de Cristo através deste ministério.</p>
-          
-          <div class="photo-gallery">
-            <div class="gallery-section">
-              <div class="gallery-title">
-                <i class="fas fa-camera"></i> Momentos de 2024
-              </div>
-              <div class="photo-grid">
-                <img src="./2024-1.jpeg" alt="Projeto Sonho de Criança - 2024" style="display: block;">
-              </div>
+          <div class="card-content">
+            <div class="text-content">
+              <span class="year-badge">2024</span>
+              <h2><i class="fas fa-trophy"></i> Expandindo Horizontes</h2>
+              <p>O projeto continua crescendo e evoluindo! Novas atividades, mais parcerias e um impacto ainda maior na comunidade. Cada ano que passa, mais corações são tocados pelo amor de Cristo através deste ministério.</p>
+            </div>
+            <div class="image-content">
+              <img src="./2024-1.jpeg" alt="Projeto Sonho de Criança - 2024" class="timeline-image">
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-  
 
     <div class="contact-section">
       <h2 class="contact-title"><i class="fas fa-heart"></i> Faça Parte do Sonho</h2>
@@ -790,35 +792,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
