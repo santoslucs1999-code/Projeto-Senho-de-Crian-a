@@ -676,6 +676,7 @@
 
       .activities-section {
         margin: 60px 0;
+        padding: 0 40px;
       }
 
       .activities-grid {
@@ -709,8 +710,14 @@
         font-size: 1rem;
       }
 
+      .timeline {
+        padding: 50px 100px;
+        max-width: 1400px;
+      }
+
       .timeline-card {
         max-width: 600px;
+        margin: 0 40px;
       }
 
       .card-header {
@@ -751,16 +758,21 @@
     }
 
     @media screen and (min-width: 1024px) {
+      .activities-section {
+        margin: 80px 0;
+        padding: 0 80px;
+      }
+
       .activities-grid {
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 30px;
-        max-width: 1000px;
+        gap: 40px;
+        max-width: 1200px;
         margin: 0 auto;
         justify-items: center;
       }
 
       .activity-card {
-        max-width: 320px;
+        max-width: 350px;
         width: 100%;
       }
 
