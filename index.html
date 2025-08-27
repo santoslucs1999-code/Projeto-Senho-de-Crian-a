@@ -243,18 +243,6 @@
       flex-direction: row-reverse;
     }
 
-    .right-layout .photo-side::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(74, 144, 226, 0.3), rgba(44, 90, 160, 0.6));
-      z-index: 2;
-      pointer-events: none;
-    }
-
     /* Carrossel de fotos */
     .photo-carousel {
       position: relative;
@@ -544,12 +532,13 @@
       }
       
       .timeline-entry {
-        margin-bottom: 60px;
+        margin-bottom: 50px;
       }
 
       .timeline-container {
         flex-direction: column !important;
-        margin: 0 20px;
+        margin: 0 15px;
+        border-radius: 25px;
       }
 
       .right-layout {
@@ -557,52 +546,106 @@
       }
 
       .text-side {
-        padding: 40px 30px;
+        padding: 35px 25px;
+        order: 1;
       }
 
       .text-side h2 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+        margin: 18px 0;
       }
 
       .text-side p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .year-badge {
         font-size: 1rem;
+        padding: 10px 22px;
       }
 
       .photo-side {
-        min-height: 300px;
+        min-height: 280px;
+        order: 2;
+        border-radius: 0 0 25px 25px;
+        overflow: hidden;
       }
 
       .carousel-controls {
         opacity: 1;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+
+      .prev-btn {
+        left: 15px;
+      }
+
+      .next-btn {
+        right: 15px;
+      }
+
+      .photo-indicators {
+        bottom: 15px;
+      }
+
+      .indicator {
+        width: 10px;
+        height: 10px;
+      }
+
+      .year-icon {
+        font-size: 2.2rem;
+        top: 25px;
+        right: 25px;
+        opacity: 0.15;
       }
 
       .stats {
         flex-direction: column;
         gap: 20px;
+        margin: 50px 0;
+        padding: 0 15px;
+      }
+
+      .stat-item {
+        margin: 0 auto;
+        max-width: 300px;
+        width: 100%;
       }
 
       .header {
-        padding: 60px 20px 40px;
+        padding: 50px 15px 35px;
       }
 
       .contact-section {
-        margin: 40px 20px;
-        padding: 40px 20px;
+        margin: 40px 15px;
+        padding: 35px 20px;
+        border-radius: 25px;
       }
 
       .contact-title {
-        font-size: 2rem;
+        font-size: 1.9rem;
+      }
+
+      .contact-subtitle {
+        font-size: 1.1rem;
       }
 
       .contact-links {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
       }
 
       .contact-btn {
         width: 100%;
-        max-width: 280px;
-        margin: 8px 0;
+        max-width: 300px;
+        margin: 6px 0;
+        font-size: 1.05rem;
+        padding: 14px 25px;
       }
     }
 
@@ -682,7 +725,6 @@
           <img src="./logo-principal.png" 
                alt="Projeto Sonho de Criança - Igreja Batista Emanuel de Monte Gordo" 
                title="Projeto Sonho de Criança - Transformando vidas através do amor"
-               style="transform: rotate(90deg);"
                onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=Projeto+Sonho+de+Criança';">
         </div>
         
