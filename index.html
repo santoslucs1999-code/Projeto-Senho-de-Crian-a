@@ -10,12 +10,19 @@
   <meta name="keywords" content="igreja batista, monte gordo, projeto criança, sonho criança, emanuel">
   <meta name="author" content="Igreja Batista Emanuel de Monte Gordo">
   
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:title" content="Projeto Sonho de Criança - Igreja Batista Emanuel">
+  <meta property="og:description" content="Transformando vidas através do amor de Cristo desde 2022">
+  <meta property="og:image" content="./logo-principal.png">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="./logo-principal.png">
   <link rel="apple-touch-icon" href="./logo-principal.png">
   
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   
   <style>
@@ -25,20 +32,81 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
-      background: linear-gradient(135deg, #4a90e2 0%, #2c5aa0 25%, #5dade2 50%, #3498db 75%, #87ceeb 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #667eea 50%, #764ba2 75%, #667eea 100%);
       background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      animation: gradientShift 20s ease infinite;
       min-height: 100vh;
       position: relative;
     }
 
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      25% { background-position: 100% 50%; }
+      50% { background-position: 0% 100%; }
+      75% { background-position: 100% 0%; }
       100% { background-position: 0% 50%; }
+    }
+
+    /* Loading Screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .loader img {
+      width: 100px;
+      height: 100px;
+      animation: pulse 2s ease-in-out infinite;
+      border-radius: 50%;
+    }
+
+    .loader-text {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Floating elements decoration */
@@ -50,38 +118,57 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
+      overflow: hidden;
     }
 
     .shape {
       position: absolute;
       opacity: 0.1;
-      animation: float 6s ease-in-out infinite;
+      animation: float 8s ease-in-out infinite;
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .shape:nth-child(1) {
-      top: 20%;
+      top: 10%;
       left: 10%;
       font-size: 60px;
       animation-delay: 0s;
     }
 
     .shape:nth-child(2) {
-      top: 60%;
+      top: 50%;
       right: 15%;
       font-size: 40px;
       animation-delay: 2s;
     }
 
     .shape:nth-child(3) {
-      bottom: 30%;
+      bottom: 20%;
       left: 20%;
       font-size: 50px;
       animation-delay: 4s;
     }
 
+    .shape:nth-child(4) {
+      top: 30%;
+      left: 50%;
+      font-size: 35px;
+      animation-delay: 6s;
+    }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1); 
+      }
+      25% { 
+        transform: translateY(-15px) rotate(90deg) scale(1.1); 
+      }
+      50% { 
+        transform: translateY(-30px) rotate(180deg) scale(0.9); 
+      }
+      75% { 
+        transform: translateY(-15px) rotate(270deg) scale(1.1); 
+      }
     }
 
     .container {
@@ -89,36 +176,14 @@
       z-index: 1;
     }
 
-    /* Logo Styles */
-    .logo-container {
-      text-align: center;
-      margin-bottom: 30px;
-      animation: logoFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .logo-container img {
-      max-width: 250px;
-      height: auto;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-      transition: all 0.3s ease;
-      cursor: pointer;
-      transform: rotate(90deg);
-    }
-
-    .logo-container img:hover {
-      transform: rotate(90deg) scale(1.05);
-      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3)) brightness(1.1);
-    }
-
+    /* Header */
     .header {
       text-align: center;
       padding: 60px 20px 50px;
       position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      margin-bottom: 30px;
     }
 
     .header::before {
@@ -128,9 +193,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 0 0 30px 30px;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border-radius: 0 0 50px 50px;
     }
 
     .header-content {
@@ -138,17 +202,44 @@
       z-index: 2;
     }
 
+    /* Logo */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: logoFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    .logo-container img {
+      max-width: 280px;
+      height: auto;
+      filter: drop-shadow(0 15px 35px rgba(0,0,0,0.3));
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.08) rotate(2deg);
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4)) brightness(1.15);
+    }
+
     h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
       font-weight: 800;
-      background: linear-gradient(45deg, #fff, #87ceeb, #4a90e2, #2c5aa0);
+      background: linear-gradient(45deg, #fff, #f8f9ff, #e8edff, #d3e2ff);
       background-size: 300% 300%;
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: textShimmer 3s ease-in-out infinite;
-      margin-bottom: 10px;
+      animation: textShimmer 4s ease-in-out infinite;
+      margin-bottom: 15px;
       text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+      letter-spacing: -1px;
     }
 
     @keyframes textShimmer {
@@ -157,33 +248,39 @@
     }
 
     .subtitle {
-      font-size: clamp(0.9rem, 3vw, 1.2rem);
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 300;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      line-height: 1.5;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 400;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .church-icon {
-      font-size: 2.5rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin: 15px 0;
-      animation: pulse 2s ease-in-out infinite;
+      font-size: 3rem;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 20px 0;
+      animation: pulse 3s ease-in-out infinite;
     }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.15); }
     }
 
+    /* Stats */
     .stats {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 15px;
-      margin: 40px 0;
-      padding: 0 20px;
-      max-width: 600px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin: 50px 20px;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -191,53 +288,82 @@
     .stat-item {
       text-align: center;
       background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 25px 15px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: transform 0.3s ease;
+      backdrop-filter: blur(20px);
+      padding: 30px 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+      opacity: 0;
+    }
+
+    .stat-item:hover::before {
+      animation: shine 0.6s ease-in-out;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
     }
 
     .stat-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 800;
-      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+      background: linear-gradient(45deg, #667eea, #764ba2);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       line-height: 1;
+      margin-bottom: 8px;
     }
 
     .stat-label {
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.95);
       font-weight: 500;
-      margin-top: 8px;
-      font-size: 0.85rem;
-      line-height: 1.2;
+      font-size: 0.9rem;
+      line-height: 1.3;
     }
 
+    /* Activities Section */
     .activities-section {
       position: relative;
       max-width: 100%;
-      margin: 50px 0;
-      padding: 0 20px;
+      margin: 60px 0;
+      padding: 60px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
     }
 
     .activities-header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .activities-title {
-      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-size: clamp(2.2rem, 5vw, 3rem);
       font-weight: 700;
       color: white;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -246,57 +372,62 @@
 
     .activities-title i {
       font-size: 0.8em;
-      color: #87ceeb;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .activities-subtitle {
-      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-size: clamp(1rem, 3vw, 1.3rem);
       color: rgba(255, 255, 255, 0.9);
       font-weight: 400;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .activities-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      max-width: 450px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .activity-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(30px);
+      border-radius: 25px;
       text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
       position: relative;
       overflow: hidden;
+      max-width: 350px;
+      margin: 0 auto;
     }
 
     .activity-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     }
 
     .activity-image {
       position: relative;
-      height: 180px;
+      height: 200px;
       overflow: hidden;
-      border-radius: 20px 20px 0 0;
+      border-radius: 25px 25px 0 0;
     }
 
     .activity-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
 
     .activity-card:hover .activity-image img {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .activity-overlay {
@@ -305,12 +436,12 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, rgba(74, 144, 226, 0.8), rgba(44, 90, 160, 0.6));
+      background: linear-gradient(45deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
 
     .activity-card:hover .activity-overlay {
@@ -318,142 +449,197 @@
     }
 
     .activity-icon {
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.9);
+      width: 70px;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
       transform: scale(0.8);
     }
 
     .activity-card:hover .activity-icon {
-      transform: scale(1);
+      transform: scale(1.1);
       background: rgba(255, 255, 255, 1);
     }
 
     .activity-icon i {
-      font-size: 24px;
-      color: #2c5aa0;
+      font-size: 28px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .activity-content {
-      padding: 25px 20px;
+      padding: 30px 25px;
     }
 
     .activity-name {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: #2c3e50;
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       line-height: 1.3;
     }
 
     .activity-description {
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #666;
-      line-height: 1.5;
+      line-height: 1.6;
       margin: 0;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      padding: 80px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+    }
+
+    .timeline-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .timeline-title {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .timeline-subtitle {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .timeline {
       position: relative;
       max-width: 100%;
       margin: 0 auto;
-      padding: 40px 0;
     }
 
     .timeline-entry {
       padding: 0;
       position: relative;
       width: 100%;
-      margin-bottom: 60px;
-      animation: slideIn 0.8s ease-out forwards;
+      margin-bottom: 80px;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(50px);
+      animation: slideInUp 0.8s ease-out forwards;
     }
 
     .timeline-entry:nth-child(1) { animation-delay: 0.2s; }
     .timeline-entry:nth-child(2) { animation-delay: 0.4s; }
     .timeline-entry:nth-child(3) { animation-delay: 0.6s; }
 
-    @keyframes slideIn {
+    @keyframes slideInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    /* Novo layout mobile-first */
     .timeline-card {
-      max-width: 450px;
+      max-width: 800px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(30px);
+      border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      transition: all 0.4s ease;
-      margin-left: 20px;
-      margin-right: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .timeline-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3);
     }
 
     .card-header {
       position: relative;
-      padding: 30px 25px 25px;
-      background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(44, 90, 160, 0.05));
+      padding: 40px 35px 30px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
     }
 
     .year-badge {
       display: inline-block;
-      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+      background: linear-gradient(45deg, #667eea, #764ba2);
       color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 12px 25px;
+      border-radius: 30px;
       font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .year-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .year-badge:hover::before {
+      left: 100%;
     }
 
     .card-title {
       color: #2c3e50;
-      margin: 0 0 15px 0;
+      margin: 0 0 20px 0;
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
       line-height: 1.3;
     }
 
+    .card-title i {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-right: 10px;
+    }
+
     .card-description {
-      line-height: 1.7;
+      line-height: 1.8;
       color: #555;
       margin-bottom: 0;
-      font-size: 1rem;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
       font-weight: 400;
     }
 
     .year-icon {
       position: absolute;
-      top: 25px;
-      right: 25px;
-      font-size: 2.5rem;
+      top: 30px;
+      right: 35px;
+      font-size: 3rem;
       opacity: 0.1;
-      color: #4a90e2;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* Galeria de fotos simplificada */
+    /* Enhanced Photo Gallery */
     .photo-gallery {
       position: relative;
-      height: 280px;
+      height: 320px;
       overflow: hidden;
+      background: #f8f9fa;
     }
 
     .photo-carousel {
@@ -467,410 +653,417 @@
       display: flex;
       width: 100%;
       height: 100%;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .photo-item {
       flex: 0 0 100%;
       width: 100%;
       height: 100%;
+      position: relative;
     }
 
     .photo-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.3s ease;
     }
 
-    /* Controles do carrossel otimizados para mobile */
+    .photo-item:hover img {
+      transform: scale(1.02);
+    }
+
+    /* Enhanced Carousel Controls */
     .carousel-controls {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       z-index: 3;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border: none;
-      width: 45px;
-      height: 45px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      color: #2c5aa0;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-size: 1.2rem;
+      color: #667eea;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      border: 2px solid transparent;
     }
 
     .carousel-controls:hover {
       background: rgba(255, 255, 255, 1);
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      transform: translateY(-50%) scale(1.15);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      color: #764ba2;
+      border-color: rgba(102, 126, 234, 0.2);
+    }
+
+    .carousel-controls:active {
+      transform: translateY(-50%) scale(0.95);
     }
 
     .prev-btn {
-      left: 15px;
+      left: 20px;
     }
 
     .next-btn {
-      right: 15px;
+      right: 20px;
     }
 
-    /* Indicadores otimizados */
+    /* Enhanced Photo Indicators */
     .photo-indicators {
       position: absolute;
-      bottom: 15px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 10px;
       z-index: 3;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 8px 15px;
-      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 12px 20px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
     }
 
     .indicator {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
     }
 
     .indicator.active {
       background: rgba(255, 255, 255, 0.9);
-      transform: scale(1.2);
+      transform: scale(1.3);
     }
 
+    .indicator:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.7);
+      transform: scale(1.1);
+    }
+
+    /* Contact Section */
     .contact-section {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
-      padding: 40px 25px;
-      margin: 50px 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
+      backdrop-filter: blur(30px);
+      border-radius: 30px;
+      padding: 50px 30px;
+      margin: 60px 20px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 2;
     }
 
     .contact-title {
-      font-size: 2.2rem;
+      font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 700;
       color: white;
-      margin-bottom: 15px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-title i {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-right: 10px;
     }
 
     .contact-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 25px;
-      line-height: 1.5;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 35px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 35px;
     }
 
     .contact-links {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      max-width: 320px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
     .contact-btn {
-      background: linear-gradient(45deg, #4a90e2, #2c5aa0);
+      background: linear-gradient(45deg, #667eea, #764ba2);
       color: white;
-      padding: 16px 25px;
-      border-radius: 30px;
+      padding: 18px 30px;
+      border-radius: 35px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.05rem;
-      transition: all 0.4s ease;
-      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+      font-size: 1.1rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
       border: 2px solid transparent;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .contact-btn:hover::before {
+      left: 100%;
     }
 
     .contact-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(74, 144, 226, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
       color: white;
     }
 
     .contact-btn i {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     .contact-btn.whatsapp {
       background: linear-gradient(45deg, #25d366, #128c7e);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
     }
 
     .contact-btn.whatsapp:hover {
-      background: linear-gradient(45deg, #25d366, #128c7e);
-      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
     }
 
     .contact-btn.instagram {
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 10px 30px rgba(240, 148, 51, 0.3);
     }
 
     .contact-btn.instagram:hover {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      box-shadow: 0 12px 30px rgba(240, 148, 51, 0.4);
+      box-shadow: 0 15px 40px rgba(240, 148, 51, 0.4);
     }
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 35px 20px;
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 50px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
-      line-height: 1.6;
+      padding: 50px 20px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(20px);
+      color: rgba(255, 255, 255, 0.9);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.95rem;
+      line-height: 1.8;
     }
 
     footer p {
-      margin: 8px 0;
+      margin: 10px 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .footer-heart {
-      color: #4a90e2;
-      animation: heartbeat 1.5s ease-in-out infinite;
-      margin: 0 5px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: heartbeat 2s ease-in-out infinite;
+      margin: 0 8px;
+      font-size: 1.1em;
     }
 
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      50% { transform: scale(1.3); }
     }
 
-    /* Responsive Design para telas maiores */
+    /* Responsive Design */
     @media screen and (min-width: 768px) {
-      .logo-container img {
-        max-width: 300px;
-      }
-
       .header {
-        padding: 80px 20px 60px;
+        padding: 100px 20px 80px;
       }
 
-      .stats {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 25px;
-        max-width: 800px;
-      }
-
-      .stat-item {
-        padding: 35px 25px;
-      }
-
-      .stat-number {
-        font-size: 3rem;
+      .logo-container img {
+        max-width: 320px;
       }
 
       .activities-section {
-        margin: 60px 0;
-        padding: 0 40px;
+        padding: 80px 40px;
       }
 
-      .activities-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
-        max-width: 700px;
-      }
-
-      .activity-image {
-        height: 200px;
-      }
-
-      .activity-content {
-        padding: 30px 25px;
-      }
-
-      .activity-icon {
-        width: 70px;
-        height: 70px;
-      }
-
-      .activity-icon i {
-        font-size: 28px;
-      }
-
-      .activity-name {
-        font-size: 1.4rem;
-      }
-
-      .activity-description {
-        font-size: 1rem;
-      }
-
-      .timeline {
-        padding: 50px 100px;
-        max-width: 1400px;
-      }
-
-      .timeline-card {
-        max-width: 600px;
-        margin: 0 40px;
-      }
-
-      .card-header {
-        padding: 40px 35px 30px;
-      }
-
-      .card-title {
-        font-size: 2.2rem;
-      }
-
-      .card-description {
-        font-size: 1.1rem;
-      }
-
-      .photo-gallery {
-        height: 350px;
+      .timeline-section {
+        padding: 100px 40px;
       }
 
       .contact-section {
-        margin: 60px auto;
-        max-width: 500px;
-        padding: 50px 40px;
+        margin: 80px auto;
+        max-width: 700px;
+        padding: 60px 50px;
       }
 
-      .contact-title {
-        font-size: 2.5rem;
-      }
-
-      .contact-subtitle {
-        font-size: 1.2rem;
-      }
-
-      .contact-links {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        max-width: 400px;
+      .photo-gallery {
+        height: 380px;
       }
     }
 
     @media screen and (min-width: 1024px) {
-      .activities-section {
-        margin: 80px 0;
-        padding: 0 80px;
-      }
-
       .activities-grid {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 40px;
-        max-width: 1200px;
-        margin: 0 auto;
-        justify-items: center;
-      }
-
-      .activity-card {
-        max-width: 350px;
-        width: 100%;
-      }
-
-      .activity-image {
-        height: 220px;
-      }
-
-      .timeline-card {
-        max-width: 700px;
-      }
-
-      .card-header {
-        padding: 50px 45px 35px;
-      }
-
-      .card-title {
-        font-size: 2.5rem;
-      }
-
-      .card-description {
-        font-size: 1.2rem;
-      }
-
-      .photo-gallery {
-        height: 400px;
       }
 
       .contact-links {
-        grid-template-columns: 1fr 1fr;
-        max-width: 450px;
-      }
-    }
-
-    /* Ajustes para telas muito pequenas */
-    @media screen and (max-width: 360px) {
-      .timeline-card {
-        margin-left: 15px;
-        margin-right: 15px;
-        border-radius: 20px;
-      }
-
-      .card-header {
-        padding: 25px 20px 20px;
-      }
-
-      .card-title {
-        font-size: 1.6rem;
-      }
-
-      .card-description {
-        font-size: 0.95rem;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 500px;
       }
 
       .photo-gallery {
-        height: 250px;
+        height: 420px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .timeline-card {
+        margin: 0 10px;
       }
 
-      .carousel-controls {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+      .card-header {
+        padding: 30px 25px 25px;
       }
 
       .contact-section {
         margin: 40px 15px;
-        padding: 30px 20px;
-        border-radius: 20px;
+        padding: 40px 25px;
       }
 
-      .contact-title {
-        font-size: 1.9rem;
+      .photo-gallery {
+        height: 280px;
       }
+
+      .carousel-controls {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1000;
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Lazy Loading */
+    img[data-src] {
+      filter: blur(5px);
+      transition: filter 0.3s;
+    }
+
+    img[data-loaded="true"] {
+      filter: blur(0px);
     }
   </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loader">
+      <img src="./logo-principal.png" alt="Logo" onerror="this.style.display='none'">
+      <div class="loader-text">Carregando Sonhos...</div>
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Floating Shapes -->
   <div class="floating-shapes">
     <i class="fas fa-heart shape"></i>
     <i class="fas fa-star shape"></i>
     <i class="fas fa-gift shape"></i>
+    <i class="fas fa-toys shape"></i>
   </div>
 
   <div class="container">
-    <header class="header">
+    <!-- Header -->
+    <header class="header" id="header">
       <div class="header-content">
         <div class="logo-container">
           <img src="./logo-principal.png" 
                alt="Projeto Sonho de Criança - Igreja Batista Emanuel de Monte Gordo" 
                title="Projeto Sonho de Criança - Transformando vidas através do amor"
-               onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/667eea/ffffff?text=Projeto+Sonho+de+Criança';">
+               loading="lazy">
         </div>
         
         <h1>Projeto Sonho de Criança</h1>
         <i class="fas fa-church church-icon"></i>
-        <p class="subtitle">Igreja Batista Emanuel de Monte Gordo<br>Transformando vidas através do amor</p>
+        <p class="subtitle">Igreja Batista Emanuel de Monte Gordo<br>Transformando vidas através do amor de Cristo desde 2022</p>
       </div>
     </header>
 
+    <!-- Stats -->
     <div class="stats">
       <div class="stat-item">
         <div class="stat-number">3</div>
@@ -886,6 +1079,7 @@
       </div>
     </div>
 
+    <!-- Activities Section -->
     <div class="activities-section">
       <div class="activities-header">
         <h2 class="activities-title">
@@ -897,7 +1091,7 @@
       <div class="activities-grid">
         <div class="activity-card">
           <div class="activity-image">
-            <img src="./atividade-balao.jpeg" alt="Brincadeira do Balão" onerror="this.src='https://via.placeholder.com/300x200/4a90e2/ffffff?text=Brincadeira+do+Balão'">
+            <img data-src="./atividade-balao.jpeg" alt="Brincadeira do Balão" loading="lazy">
             <div class="activity-overlay">
               <div class="activity-icon">
                 <i class="fas fa-heart"></i>
@@ -906,13 +1100,13 @@
           </div>
           <div class="activity-content">
             <h3 class="activity-name">Brincadeira do Balão</h3>
-            <p class="activity-description">Diversão garantida com balões coloridos e muita alegria</p>
+            <p class="activity-description">Diversão garantida com balões coloridos e muita alegria compartilhada</p>
           </div>
         </div>
 
         <div class="activity-card">
           <div class="activity-image">
-            <img src="./atividade-louvor.jpeg" alt="Louvor Infantil" onerror="this.src='https://via.placeholder.com/300x200/2c5aa0/ffffff?text=Louvor+Infantil'">
+            <img data-src="./atividade-louvor.jpeg" alt="Louvor Infantil" loading="lazy">
             <div class="activity-overlay">
               <div class="activity-icon">
                 <i class="fas fa-music"></i>
@@ -927,7 +1121,7 @@
 
         <div class="activity-card">
           <div class="activity-image">
-            <img src="./atividade-pintura.jpeg" alt="Pintura e Desenho" onerror="this.src='https://via.placeholder.com/300x200/5dade2/ffffff?text=Pintura+e+Desenho'">
+            <img data-src="./atividade-pintura.jpeg" alt="Pintura e Desenho" loading="lazy">
             <div class="activity-overlay">
               <div class="activity-icon">
                 <i class="fas fa-palette"></i>
@@ -936,13 +1130,13 @@
           </div>
           <div class="activity-content">
             <h3 class="activity-name">Pintura e Desenho</h3>
-            <p class="activity-description">Criatividade em cores com atividades artísticas</p>
+            <p class="activity-description">Criatividade em cores com atividades artísticas inspiradoras</p>
           </div>
         </div>
 
         <div class="activity-card">
           <div class="activity-image">
-            <img src="./atividade-jogos.jpeg" alt="Jogos e Brincadeiras" onerror="this.src='https://via.placeholder.com/300x200/3498db/ffffff?text=Jogos+e+Brincadeiras'">
+            <img data-src="./atividade-jogos.jpeg" alt="Jogos e Brincadeiras" loading="lazy">
             <div class="activity-overlay">
               <div class="activity-icon">
                 <i class="fas fa-gamepad"></i>
@@ -957,7 +1151,7 @@
 
         <div class="activity-card">
           <div class="activity-image">
-            <img src="./atividade-presentes.jpeg" alt="Distribuição de Presentes" onerror="this.src='https://via.placeholder.com/300x200/87ceeb/ffffff?text=Distribuição+de+Presentes'">
+            <img data-src="./atividade-presentes.jpeg" alt="Distribuição de Presentes" loading="lazy">
             <div class="activity-overlay">
               <div class="activity-icon">
                 <i class="fas fa-gift"></i>
@@ -966,13 +1160,13 @@
           </div>
           <div class="activity-content">
             <h3 class="activity-name">Distribuição de Presentes</h3>
-            <p class="activity-description">Surpresas especiais para cada criança participante</p>
+            <p class="activity-description">Surpresas especiais preparadas com amor para cada criança</p>
           </div>
         </div>
 
         <div class="activity-card">
           <div class="activity-image">
-            <img src="./atividade-lanche.jpeg" alt="Lanche Especial" onerror="this.src='https://via.placeholder.com/300x200/4a90e2/ffffff?text=Lanche+Especial'">
+            <img data-src="./atividade-lanche.jpeg" alt="Lanche Especial" loading="lazy">
             <div class="activity-overlay">
               <div class="activity-icon">
                 <i class="fas fa-utensils"></i>
@@ -987,115 +1181,159 @@
       </div>
     </div>
 
-    <div class="timeline">
-      <!-- 2022 -->
-      <div class="timeline-entry">
-        <div class="timeline-card">
-          <div class="card-header">
-            <i class="fas fa-heart year-icon"></i>
-            <span class="year-badge">2022</span>
-            <h2 class="card-title"><i class="fas fa-music"></i> Crescendo em Amor</h2>
-            <p class="card-description">O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão.</p>
-          </div>
-          <div class="photo-gallery">
-            <div class="photo-carousel" data-carousel="2022">
-              <div class="photo-track" data-track="2022">
-                <div class="photo-item">
-                  <img src="./2022-1.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 1">
+    <!-- Timeline Section -->
+    <div class="timeline-section">
+      <div class="timeline-header">
+        <h2 class="timeline-title">Nossa Jornada</h2>
+        <p class="timeline-subtitle">Três anos transformando sonhos em realidade</p>
+      </div>
+      
+      <div class="timeline">
+        <!-- 2022 -->
+        <div class="timeline-entry">
+          <div class="timeline-card">
+            <div class="card-header">
+              <i class="fas fa-seedling year-icon"></i>
+              <span class="year-badge">2022</span>
+              <h2 class="card-title"><i class="fas fa-heart"></i> O Início de Um Sonho</h2>
+              <p class="card-description">Nossos primeiros passos! O que começou como uma ideia se transformou em realidade. Vimos sorrisos genuínos, abraços calorosos e a comunidade se unindo em torno de uma causa especial. Foi o ano em que plantamos as sementes do amor.</p>
+            </div>
+            <div class="photo-gallery">
+              <div class="photo-carousel" data-carousel="2022">
+                <div class="photo-track" data-track="2022">
+                  <div class="photo-item">
+                    <img data-src="./2022-1.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 1" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2022-2.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 2" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2022-3.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 3" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2022-4.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 4" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2022-5.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 5" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2022-6.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 6" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2022-7.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 7" loading="lazy">
+                  </div>
                 </div>
-                <div class="photo-item">
-                  <img src="./2022-2.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 2">
+                <button class="carousel-controls prev-btn" onclick="prevPhoto('2022')" aria-label="Foto anterior">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-controls next-btn" onclick="nextPhoto('2022')" aria-label="Próxima foto">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="photo-indicators" data-indicators="2022">
+                  <span class="indicator active" onclick="goToPhoto('2022', 0)" aria-label="Foto 1"></span>
+                  <span class="indicator" onclick="goToPhoto('2022', 1)" aria-label="Foto 2"></span>
+                  <span class="indicator" onclick="goToPhoto('2022', 2)" aria-label="Foto 3"></span>
+                  <span class="indicator" onclick="goToPhoto('2022', 3)" aria-label="Foto 4"></span>
+                  <span class="indicator" onclick="goToPhoto('2022', 4)" aria-label="Foto 5"></span>
+                  <span class="indicator" onclick="goToPhoto('2022', 5)" aria-label="Foto 6"></span>
+                  <span class="indicator" onclick="goToPhoto('2022', 6)" aria-label="Foto 7"></span>
                 </div>
-                <div class="photo-item">
-                  <img src="./2022-3.jpeg" alt="Projeto Sonho de Criança 2022 - Foto 3" onerror="this.src='./2022-1.jpeg'">
-                </div>
-              </div>
-              <button class="carousel-controls prev-btn" onclick="prevPhoto('2022')">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button class="carousel-controls next-btn" onclick="nextPhoto('2022')">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-              <div class="photo-indicators" data-indicators="2022">
-                <span class="indicator active" onclick="goToPhoto('2022', 0)"></span>
-                <span class="indicator" onclick="goToPhoto('2022', 1)"></span>
-                <span class="indicator" onclick="goToPhoto('2022', 2)"></span>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2023 -->
-      <div class="timeline-entry">
-        <div class="timeline-card">
-          <div class="card-header">
-            <i class="fas fa-crown year-icon"></i>
-            <span class="year-badge">2023</span>
-            <h2 class="card-title"><i class="fas fa-hands-helping"></i> A Edição Mais Especial</h2>
-            <p class="card-description">Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária cheia de fé, esperança e amor. Cada criança foi verdadeiramente abençoada.</p>
-          </div>
-          <div class="photo-gallery">
-            <div class="photo-carousel" data-carousel="2023">
-              <div class="photo-track" data-track="2023">
-                <div class="photo-item">
-                  <img src="./2023-1.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 1">
+        <!-- 2023 -->
+        <div class="timeline-entry">
+          <div class="timeline-card">
+            <div class="card-header">
+              <i class="fas fa-crown year-icon"></i>
+              <span class="year-badge">2023</span>
+              <h2 class="card-title"><i class="fas fa-hands-helping"></i> Crescendo em Amor</h2>
+              <p class="card-description">O projeto floresceu! Mais crianças atendidas, apresentações emocionantes, louvor infantil que tocou corações, doações generosas e um dia repleto de sorrisos genuínos. A comunidade abraçou nossa missão com todo o coração.</p>
+            </div>
+            <div class="photo-gallery">
+              <div class="photo-carousel" data-carousel="2023">
+                <div class="photo-track" data-track="2023">
+                  <div class="photo-item">
+                    <img data-src="./2023-1.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 1" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2023-2.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 2" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2023-3.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 3" loading="lazy">
+                  </div>
                 </div>
-                <div class="photo-item">
-                  <img src="./2023-2.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 2" onerror="this.src='./2023-1.jpeg'">
+                <button class="carousel-controls prev-btn" onclick="prevPhoto('2023')" aria-label="Foto anterior">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-controls next-btn" onclick="nextPhoto('2023')" aria-label="Próxima foto">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="photo-indicators" data-indicators="2023">
+                  <span class="indicator active" onclick="goToPhoto('2023', 0)" aria-label="Foto 1"></span>
+                  <span class="indicator" onclick="goToPhoto('2023', 1)" aria-label="Foto 2"></span>
+                  <span class="indicator" onclick="goToPhoto('2023', 2)" aria-label="Foto 3"></span>
                 </div>
-                <div class="photo-item">
-                  <img src="./2023-3.jpeg" alt="Projeto Sonho de Criança 2023 - Foto 3" onerror="this.src='./2023-1.jpeg'">
-                </div>
-              </div>
-              <button class="carousel-controls prev-btn" onclick="prevPhoto('2023')">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button class="carousel-controls next-btn" onclick="nextPhoto('2023')">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-              <div class="photo-indicators" data-indicators="2023">
-                <span class="indicator active" onclick="goToPhoto('2023', 0)"></span>
-                <span class="indicator" onclick="goToPhoto('2023', 1)"></span>
-                <span class="indicator" onclick="goToPhoto('2023', 2)"></span>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 2024 -->
-      <div class="timeline-entry">
-        <div class="timeline-card">
-          <div class="card-header">
-            <i class="fas fa-rocket year-icon"></i>
-            <span class="year-badge">2024</span>
-            <h2 class="card-title"><i class="fas fa-trophy"></i> Expandindo Horizontes</h2>
-            <p class="card-description">O projeto continua crescendo e evoluindo! Novas atividades, mais parcerias e um impacto ainda maior na comunidade. Cada ano que passa, mais corações são tocados pelo amor de Cristo através deste ministério.</p>
-          </div>
-          <div class="photo-gallery">
-            <div class="photo-carousel" data-carousel="2024">
-              <div class="photo-track" data-track="2024">
-                <div class="photo-item">
-                  <img src="./2024-1.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 1">
+        <!-- 2024 -->
+        <div class="timeline-entry">
+          <div class="timeline-card">
+            <div class="card-header">
+              <i class="fas fa-rocket year-icon"></i>
+              <span class="year-badge">2024</span>
+              <h2 class="card-title"><i class="fas fa-trophy"></i> Expandindo Horizontes</h2>
+              <p class="card-description">Nosso marco mais significativo! Com apoio crescente da comunidade, novos voluntários dedicados e uma programação extraordinária. Cada criança foi verdadeiramente abençoada. O amor de Cristo se manifestou de forma tangível através de cada gesto de carinho.</p>
+            </div>
+            <div class="photo-gallery">
+              <div class="photo-carousel" data-carousel="2024">
+                <div class="photo-track" data-track="2024">
+                  <div class="photo-item">
+                    <img data-src="./2024-1.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 1" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-2.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 2" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-3.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 3" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-4.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 4" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-5.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 5" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-6.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 6" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-7.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 7" loading="lazy">
+                  </div>
+                  <div class="photo-item">
+                    <img data-src="./2024-8.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 8" loading="lazy">
+                  </div>
                 </div>
-                <div class="photo-item">
-                  <img src="./2024-2.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 2" onerror="this.src='./2024-1.jpeg'">
+                <button class="carousel-controls prev-btn" onclick="prevPhoto('2024')" aria-label="Foto anterior">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-controls next-btn" onclick="nextPhoto('2024')" aria-label="Próxima foto">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="photo-indicators" data-indicators="2024">
+                  <span class="indicator active" onclick="goToPhoto('2024', 0)" aria-label="Foto 1"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 1)" aria-label="Foto 2"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 2)" aria-label="Foto 3"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 3)" aria-label="Foto 4"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 4)" aria-label="Foto 5"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 5)" aria-label="Foto 6"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 6)" aria-label="Foto 7"></span>
+                  <span class="indicator" onclick="goToPhoto('2024', 7)" aria-label="Foto 8"></span>
                 </div>
-                <div class="photo-item">
-                  <img src="./2024-3.jpeg" alt="Projeto Sonho de Criança 2024 - Foto 3" onerror="this.src='./2024-1.jpeg'">
-                </div>
-              </div>
-              <button class="carousel-controls prev-btn" onclick="prevPhoto('2024')">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button class="carousel-controls next-btn" onclick="nextPhoto('2024')">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-              <div class="photo-indicators" data-indicators="2024">
-                <span class="indicator active" onclick="goToPhoto('2024', 0)"></span>
-                <span class="indicator" onclick="goToPhoto('2024', 1)"></span>
-                <span class="indicator" onclick="goToPhoto('2024', 2)"></span>
               </div>
             </div>
           </div>
@@ -1103,54 +1341,102 @@
       </div>
     </div>
 
+    <!-- Contact Section -->
     <div class="contact-section">
-      <h2 class="contact-title"><i class="fas fa-heart"></i> Faça Parte do Sonho</h2>
-      <p class="contact-subtitle">Acompanhe nossos projetos e participe desta missão de amor</p>
-      <div class="contact-links">
-        <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="contact-btn instagram">
-          <i class="fab fa-instagram"></i> @I.B.E.M.G
-        </a>
-        <a href="https://wa.me/5571992801895?text=Olá! Gostaria de saber mais sobre o Projeto Sonho de Criança" target="_blank" class="contact-btn whatsapp">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="tel:+5571992801895" class="contact-btn">
-          <i class="fas fa-phone"></i> Ligar Agora
-        </a>
-        <a href="mailto:comunicacaoibemanuelmg@gmail.com" class="contact-btn">
-          <i class="fas fa-envelope"></i> E-mail
-        </a>
+      <div class="contact-content">
+        <h2 class="contact-title"><i class="fas fa-heart"></i> Faça Parte do Sonho</h2>
+        <p class="contact-subtitle">Acompanhe nossos projetos e participe desta missão de amor. Juntos, podemos transformar mais sonhos em realidade.</p>
+        <div class="contact-links">
+          <a href="https://www.instagram.com/i.b.e.m.g/" target="_blank" class="contact-btn instagram" rel="noopener">
+            <i class="fab fa-instagram"></i> @I.B.E.M.G
+          </a>
+          <a href="https://wa.me/5571992801895?text=Olá! Gostaria de saber mais sobre o Projeto Sonho de Criança" target="_blank" class="contact-btn whatsapp" rel="noopener">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="tel:+5571992801895" class="contact-btn">
+            <i class="fas fa-phone"></i> Ligar Agora
+          </a>
+          <a href="mailto:comunicacaoibemanuelmg@gmail.com" class="contact-btn">
+            <i class="fas fa-envelope"></i> E-mail
+          </a>
+        </div>
       </div>
     </div>
 
+    <!-- Footer -->
     <footer>
       <p>Feito com <i class="fas fa-heart footer-heart"></i> pela Igreja Batista Emanuel de Monte Gordo</p>
       <p>© 2025 • Todos os direitos reservados • Continuamos sonhando e realizando</p>
       <p><i class="fas fa-map-marker-alt"></i> Monte Gordo, Bahia • <i class="fas fa-phone"></i> (71) 9 9280-1895</p>
+      <p><i class="fas fa-envelope"></i> comunicacaoibemanuelmg@gmail.com</p>
     </footer>
   </div>
 
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" aria-label="Voltar ao topo">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
   <script>
-    // Sistema de carrossel para as fotos
+    // Loading Screen
+    window.addEventListener('load', function() {
+      const loadingScreen = document.getElementById('loadingScreen');
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      }, 1500);
+    });
+
+    // Lazy Loading for Images
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.addEventListener('load', () => {
+            img.setAttribute('data-loaded', 'true');
+          });
+          observer.unobserve(img);
+        }
+      });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+
+    // Enhanced Carousel System
     const carousels = {};
     
-    // Inicializar todos os carrosseis
+    // Initialize all carousels
     document.querySelectorAll('[data-carousel]').forEach(carousel => {
       const year = carousel.dataset.carousel;
+      const totalPhotos = carousel.querySelectorAll('.photo-item').length;
       carousels[year] = {
         currentIndex: 0,
-        totalPhotos: carousel.querySelectorAll('.photo-item').length
+        totalPhotos: totalPhotos,
+        autoPlay: null
       };
+      
+      // Start autoplay
+      startAutoPlay(year);
+      
+      // Pause on hover
+      carousel.addEventListener('mouseenter', () => stopAutoPlay(year));
+      carousel.addEventListener('mouseleave', () => startAutoPlay(year));
     });
 
     function updateCarousel(year) {
       const track = document.querySelector(`[data-track="${year}"]`);
       const indicators = document.querySelectorAll(`[data-indicators="${year}"] .indicator`);
       
-      if (track && indicators) {
+      if (track && indicators.length > 0) {
         const translateX = -carousels[year].currentIndex * 100;
         track.style.transform = `translateX(${translateX}%)`;
         
-        // Atualizar indicadores
+        // Update indicators
         indicators.forEach((indicator, index) => {
           indicator.classList.toggle('active', index === carousels[year].currentIndex);
         });
@@ -1161,25 +1447,126 @@
       if (carousels[year].currentIndex < carousels[year].totalPhotos - 1) {
         carousels[year].currentIndex++;
       } else {
-        carousels[year].currentIndex = 0; // Volta para a primeira
+        carousels[year].currentIndex = 0;
       }
       updateCarousel(year);
+      restartAutoPlay(year);
     }
 
     function prevPhoto(year) {
       if (carousels[year].currentIndex > 0) {
         carousels[year].currentIndex--;
       } else {
-        carousels[year].currentIndex = carousels[year].totalPhotos - 1; // Vai para a última
+        carousels[year].currentIndex = carousels[year].totalPhotos - 1;
       }
       updateCarousel(year);
+      restartAutoPlay(year);
     }
 
     function goToPhoto(year, index) {
       carousels[year].currentIndex = index;
       updateCarousel(year);
+      restartAutoPlay(year);
+    }
+
+    function startAutoPlay(year) {
+      carousels[year].autoPlay = setInterval(() => {
+        nextPhoto(year);
+      }, 4000);
+    }
+
+    function stopAutoPlay(year) {
+      if (carousels[year].autoPlay) {
+        clearInterval(carousels[year].autoPlay);
+      }
+    }
+
+    function restartAutoPlay(year) {
+      stopAutoPlay(year);
+      startAutoPlay(year);
+    }
+
+    // Scroll to Top functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Enhanced Animations on Scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.timeline-entry, .activity-card, .stat-item').forEach(el => {
+      scrollObserver.observe(el);
+    });
+
+    // Keyboard Navigation for Carousel
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        Object.keys(carousels).forEach(year => {
+          const carousel = document.querySelector(`[data-carousel="${year}"]`);
+          if (carousel && isElementInViewport(carousel)) {
+            prevPhoto(year);
+          }
+        });
+      } else if (e.key === 'ArrowRight') {
+        Object.keys(carousels).forEach(year => {
+          const carousel = document.querySelector(`[data-carousel="${year}"]`);
+          if (carousel && isElementInViewport(carousel)) {
+            nextPhoto(year);
+          }
+        });
+      }
+    });
+
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    // Error handling for images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        if (this.dataset.src && !this.hasAttribute('data-error-handled')) {
+          this.setAttribute('data-error-handled', 'true');
+          // Try to load a placeholder or hide the image
+          this.style.display = 'none';
+          console.log(`Failed to load image: ${this.dataset.src || this.src}`);
+        }
+      });
+    });
+
+    // Performance optimization: Reduce animations on low-end devices
+    if (navigator.connection && navigator.connection.saveData) {
+      document.body.classList.add('reduced-motion');
     }
   </script>
 </body>
 </html>
-
