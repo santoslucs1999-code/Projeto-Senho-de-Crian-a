@@ -9,6 +9,8 @@
   <meta name="description" content="Projeto Sonho de Criança da Igreja Batista Emanuel de Monte Gordo. Transformando vidas através do amor de Cristo desde 2022.">
   <meta name="keywords" content="igreja batista, monte gordo, projeto criança, sonho criança, emanuel">
   <meta name="author" content="Igreja Batista Emanuel de Monte Gordo">
+
+  
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -53,6 +55,78 @@
       75% { background-position: 100% 0%; }
       100% { background-position: 0% 50%; }
     }
+    .activity-image {
+    /* Garante que o photo-rotator fique contido dentro da área da imagem */
+    position: relative;
+    overflow: hidden; 
+    width: 100%;
+    /* Defina uma altura para a área da imagem, se necessário */
+    height: 200px; /* Exemplo de altura */
+}
+
+.photo-rotator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rotator-img {
+    /* Posiciona todas as imagens exatamente no mesmo local (uma em cima da outra) */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    opacity: 0; /* Começa com todas as imagens invisíveis */
+    animation: imageSwitch 20s infinite; /* A duração total do ciclo (4 fotos * 5s por foto) */
+}
+
+/* Cada imagem precisa de um delay de animação diferente para aparecer na hora certa.
+  Como temos 4 imagens e o ciclo dura 20s (5s por imagem), o delay será:
+  Foto 1: 0s
+  Foto 2: 5s
+  Foto 3: 10s
+  Foto 4: 15s
+*/
+
+.rotator-img:nth-child(1) {
+    /* Foto 1: aparece de 0s a 5s */
+    animation-delay: 0s;
+}
+
+.rotator-img:nth-child(2) {
+    /* Foto 2: aparece de 5s a 10s */
+    animation-delay: 5s;
+}
+
+.rotator-img:nth-child(3) {
+    /* Foto 3: aparece de 10s a 15s */
+    animation-delay: 10s;
+}
+
+.rotator-img:nth-child(4) {
+    /* Foto 4: aparece de 15s a 20s */
+    animation-delay: 15s;
+}
+
+/* Define a sequência de opacidade para mostrar cada imagem por 5 segundos */
+@keyframes imageSwitch {
+    /* 0% a 20% (0s a 4s): Foto 1 visível */
+    0%, 20% { opacity: 1; }
+    
+    /* 25% a 45% (5s a 9s): Foto 2 visível */
+    25%, 45% { opacity: 1; }
+    
+    /* 50% a 70% (10s a 14s): Foto 3 visível */
+    50%, 70% { opacity: 1; }
+    
+    /* 75% a 95% (15s a 19s): Foto 4 visível */
+    75%, 95% { opacity: 1; }
+    
+    /* 100%: Volta para a Foto 1 (início do ciclo) */
+    100% { opacity: 0; }
+}
 
     /* Loading Screen */
     .loading-screen {
@@ -1167,73 +1241,24 @@
         </div>
 
 <div class="activity-card">
- <div class="activity-image">
-   <img data-src="./atividade-cestas.jpg" alt="Cestas Solidárias" loading="lazy">
-   <div class="activity-overlay">
-     <div class="activity-icon">
-       <i class="fas fa-utensils"></i> </div>
-   </div>
- </div>
- <div class="activity-content">
-   <h3 class="activity-name">Cestas Solidárias</h3>
-   <p class="activity-description">Algumas famílias recebem cestas com alimentos essenciais, como gesto de cuidado e solidariedade.</p>
- </div>
-</div>
+  <div class="activity-image">
+    <div class="photo-rotator">
+      <img class="rotator-img" src="./seta(1).png" alt="Cestas Solidárias - Foto 1" loading="lazy">
+      <img class="rotator-img" src="./seta(2).png" alt="Cestas Solidárias - Foto 2" loading="lazy">
+      <img class="rotator-img" src="./seta(3).png" alt="Cestas Solidárias - Foto 3" loading="lazy">
+      <img class="rotator-img" src="./seta(4).png" alt="Cestas Solidárias - Foto 4" loading="lazy">
+    </div>
 
-<div class="activity-card">
- <div class="activity-image">
-   <img data-src="./seta(1).png" alt="Seta 1" loading="lazy">
-   <div class="activity-overlay">
-     <div class="activity-icon">
-       <i class="fas fa-utensils"></i> </div>
-   </div>
- </div>
- <div class="activity-content">
-   <h3 class="activity-name">Seta 1</h3>
-   <p class="activity-description">Algumas famílias recebem cestas com alimentos essenciais, como gesto de cuidado e solidariedade.</p>
- </div>
-</div>
-
-<div class="activity-card">
- <div class="activity-image">
-   <img data-src="./seta(2).png" alt="Seta 2" loading="lazy">
-   <div class="activity-overlay">
-     <div class="activity-icon">
-       <i class="fas fa-utensils"></i> </div>
-   </div>
- </div>
- <div class="activity-content">
-   <h3 class="activity-name">Seta 2</h3>
-   <p class="activity-description">Algumas famílias recebem cestas com alimentos essenciais, como gesto de cuidado e solidariedade.</p>
- </div>
-</div>
-
-<div class="activity-card">
- <div class="activity-image">
-   <img data-src="./seta(3).png" alt="Seta 3" loading="lazy">
-   <div class="activity-overlay">
-     <div class="activity-icon">
-       <i class="fas fa-utensils"></i> </div>
-   </div>
- </div>
- <div class="activity-content">
-   <h3 class="activity-name">Seta 3</h3>
-   <p class="activity-description">Algumas famílias recebem cestas com alimentos essenciais, como gesto de cuidado e solidariedade.</p>
- </div>
-</div>
-
-<div class="activity-card">
- <div class="activity-image">
-   <img data-src="./seta(4).png" alt="Seta 4" loading="lazy">
-   <div class="activity-overlay">
-     <div class="activity-icon">
-       <i class="fas fa-utensils"></i> </div>
-   </div>
- </div>
- <div class="activity-content">
-   <h3 class="activity-name">Seta 4</h3>
-   <p class="activity-description">Algumas famílias recebem cestas com alimentos essenciais, como gesto de cuidado e solidariedade.</p>
- </div>
+    <div class="activity-overlay">
+      <div class="activity-icon">
+        <i class="fas fa-utensils"></i> 
+      </div>
+    </div>
+  </div>
+  <div class="activity-content">
+    <h3 class="activity-name">Cestas Solidárias</h3>
+    <p class="activity-description">Algumas famílias recebem cestas com alimentos essenciais, como gesto de cuidado e solidariedade.</p>
+  </div>
 </div>
 
 
@@ -1715,6 +1740,7 @@
   </script>
 </body>
 </html>
+
 
 
 
